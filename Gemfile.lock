@@ -212,7 +212,7 @@ GEM
       railties (~> 5.0, >= 5.0.1)
     tzinfo (1.2.3)
       thread_safe (~> 0.1)
-    uglifier (3.1.11)
+    uglifier (3.1.12)
       execjs (>= 0.3.0, < 3)
     warden (1.2.7)
       rack (>= 1.0)
@@ -237,7 +237,6 @@ DEPENDENCIES
   guard-livereload
   jbuilder (~> 2.5)
   jquery-rails
-  less-rails
   listen (~> 3.0.5)
   pg (~> 0.18)
   puma (~> 3.0)

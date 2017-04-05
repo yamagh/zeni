@@ -1,0 +1,18 @@
+p#notice = notice
+
+p
+  strong User:
+  = @category.user
+p
+  strong Name:
+  = @category.name
+p
+  strong Is disabled:
+  = @category.is_disabled
+p
+  strong Order:
+  = @category.order
+
+= link_to 'Edit', edit_category_path(@category)
+'  |
+= link_to 'Back', categories_path

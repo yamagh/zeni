@@ -1,0 +1,27 @@
+h1 Listing categories
+
+table
+  thead
+    tr
+      th User
+      th Name
+      th Is disabled
+      th Order
+      th
+      th
+      th
+
+  tbody
+    - @categories.each do |category|
+      tr
+        td = category.user
+        td = category.name
+        td = category.is_disabled
+        td = category.order
+        td = link_to 'Show', category
+        td = link_to 'Edit', edit_category_path(category)
+        td = link_to 'Destroy', category, data: { confirm: 'Are you sure?' }, method: :delete
+
+br
+
+= link_to 'New Category', new_category_path

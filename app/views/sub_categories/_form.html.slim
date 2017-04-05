@@ -1,0 +1,21 @@
+= form_for @sub_category do |f|
+  - if @sub_category.errors.any?
+    #error_explanation
+      h2 = "#{pluralize(@sub_category.errors.count, "error")} prohibited this sub_category from being saved:"
+      ul
+        - @sub_category.errors.full_messages.each do |message|
+          li = message
+
+  .field
+    = f.label :category
+    = f.text_field :category
+  .field
+    = f.label :name
+    = f.text_field :name
+  .field
+    = f.label :is_disabled
+    = f.check_box :is_disabled
+  .field
+    = f.label :order
+    = f.number_field :order
+  .actions = f.submit

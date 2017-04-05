@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  category: one
+  name: MyString
+  is_disabled: false
+  order: 1
+
+two:
+  category: two
+  name: MyString
+  is_disabled: false
+  order: 1

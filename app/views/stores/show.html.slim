@@ -1,0 +1,24 @@
+p#notice = notice
+
+p
+  strong User:
+  = @store.user
+p
+  strong Name:
+  = @store.name
+p
+  strong Tel:
+  = @store.tel
+p
+  strong Address:
+  = @store.address
+p
+  strong Is disabled:
+  = @store.is_disabled
+p
+  strong Order:
+  = @store.order
+
+= link_to 'Edit', edit_store_path(@store)
+'  |
+= link_to 'Back', stores_path

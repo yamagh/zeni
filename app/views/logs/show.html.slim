@@ -1,0 +1,33 @@
+p#notice = notice
+
+p
+  strong User:
+  = @log.user
+p
+  strong Logged at:
+  = @log.logged_at
+p
+  strong Ammount:
+  = @log.ammount
+p
+  strong Is expence:
+  = @log.is_expence
+p
+  strong Account:
+  = @log.account
+p
+  strong Sub category:
+  = @log.sub_category
+p
+  strong Store:
+  = @log.store
+p
+  strong Item:
+  = @log.item
+p
+  strong Memo:
+  = @log.memo
+
+= link_to 'Edit', edit_log_path(@log)
+'  |
+= link_to 'Back', logs_path

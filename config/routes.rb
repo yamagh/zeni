@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :logs
   resources :stores
   resources :sub_categories
   resources :categories

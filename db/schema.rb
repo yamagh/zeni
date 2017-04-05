@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170405150818) do
+ActiveRecord::Schema.define(version: 20170405150918) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -33,6 +33,24 @@ ActiveRecord::Schema.define(version: 20170405150818) do
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
     t.index ["user_id"], name: "index_categories_on_user_id", using: :btree
+  end
+
+  create_table "logs", force: :cascade do |t|
+    t.integer  "user_id"
+    t.datetime "logged_at"
+    t.decimal  "ammount"
+    t.boolean  "is_expence"
+    t.integer  "account_id"
+    t.integer  "sub_category_id"
+    t.integer  "store_id"
+    t.string   "item"
+    t.string   "memo"
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
+    t.index ["account_id"], name: "index_logs_on_account_id", using: :btree
+    t.index ["store_id"], name: "index_logs_on_store_id", using: :btree
+    t.index ["sub_category_id"], name: "index_logs_on_sub_category_id", using: :btree
+    t.index ["user_id"], name: "index_logs_on_user_id", using: :btree
   end
 
   create_table "stores", force: :cascade do |t|
@@ -76,6 +94,10 @@ ActiveRecord::Schema.define(version: 20170405150818) do
 
   add_foreign_key "accounts", "users"
   add_foreign_key "categories", "users"
+  add_foreign_key "logs", "accounts"
+  add_foreign_key "logs", "stores"
+  add_foreign_key "logs", "sub_categories"
+  add_foreign_key "logs", "users"
   add_foreign_key "stores", "users"
   add_foreign_key "sub_categories", "categories"
 end

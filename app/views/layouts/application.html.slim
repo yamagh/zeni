@@ -19,32 +19,26 @@ html lang="en"
 
 
   body
-    .navbar.navbar-default.navbar-static-top
-        .container
-          button.navbar-toggle type="button" data-toggle="collapse" data-target=".navbar-responsive-collapse"
-            span.icon-bar
-            span.icon-bar
-            span.icon-bar
-          a.navbar-brand href="#"Zeni
-          .navbar-collapse.collapse.navbar-responsive-collapse
-            ul.nav.navbar-nav
-              li= link_to "Link 1", "/path1"
-              li= link_to "Link 2", "/path2"
-              li= link_to "Link 3", "/path3"
+    = nav_bar fixed: :top, brand: "Zeni", responsive: true do
+      - if user_signed_in?
+        = menu_group do
+          = menu_item t(:DashBoard), "#"
+          = menu_item t(:AddLog), logs_path
+        = menu_group pull: :right do
+          = drop_down current_user.email do
+            = menu_item t(:Log), logs_path
+            = menu_item t(:Account), accounts_path
+            = menu_item t(:Category), categories_path
+            = menu_item t(:Store), stores_path
+            = drop_down_divider
+            = menu_item t(:EditUser), edit_user_registration_path
+            = menu_item t(:LogOut), destroy_user_session_path, {method: :delete}
 
     .container
       .row
         .col-lg-9
           = bootstrap_flash
           = yield
-        .col-lg-3
-          .well.sidebar-nav
-            h3 Sidebar
-            ul.nav.nav-list
-              li.nav-header Sidebar
-              li= link_to "Link 1", "/path1"
-              li= link_to "Link 2", "/path2"
-              li= link_to "Link 3", "/path3"
 
       footer
         p &copy; Company 2017

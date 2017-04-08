@@ -1,18 +1,26 @@
-p#notice = notice
+- model_class = Account
+.page-header
+  h1=t '.title', :default => model_class.model_name.human.titleize
 
 p
-  strong User:
-  = @account.user
+  strong= model_class.human_attribute_name(:user_id) + ':'
+  br
+  = @account.user_id
 p
-  strong Name:
+  strong= model_class.human_attribute_name(:name) + ':'
+  br
   = @account.name
 p
-  strong Is disabled:
+  strong= model_class.human_attribute_name(:is_disabled) + ':'
+  br
   = @account.is_disabled
 p
-  strong Order:
+  strong= model_class.human_attribute_name(:order) + ':'
+  br
   = @account.order
 
-= link_to 'Edit', edit_account_path(@account)
-'  |
-= link_to 'Back', accounts_path
+= link_to t('.back', :default => t("helpers.links.back")), accounts_path, :class => 'btn btn-default'
+'
+= link_to t('.edit', :default => t("helpers.links.edit")), edit_account_path(@account), :class => 'btn btn-default'
+'
+= link_to t('.destroy', :default => t("helpers.links.destroy")), account_path(@account), :method => "delete", :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) }, :class => 'btn btn-danger'

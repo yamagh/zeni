@@ -1,40 +1,30 @@
 - model_class = Log
 .page-header
-  h1=t '.title', :default => model_class.model_name.human.pluralize.titleize
-table.table.table-striped
-  thead
-    tr
-      th= model_class.human_attribute_name(:id)
-      th= model_class.human_attribute_name(:user_id)
-      th= model_class.human_attribute_name(:logged_at)
-      th= model_class.human_attribute_name(:ammount)
-      th= model_class.human_attribute_name(:is_expence)
-      th= model_class.human_attribute_name(:account_id)
-      th= model_class.human_attribute_name(:sub_category_id)
-      th= model_class.human_attribute_name(:store_id)
-      th= model_class.human_attribute_name(:item)
-      th= model_class.human_attribute_name(:memo)
-      th= model_class.human_attribute_name(:created_at)
-      th=t '.actions', :default => t("helpers.actions")
-  tbody
-    - @logs.each do |log|
+  h1
+    .pull-left=t '.title', :default => model_class.model_name.human.pluralize.titleize
+    .pull-right= link_to t('.new', :default => t("helpers.links.new")), new_log_path, :class => 'btn btn-primary'
+    .clearfix
+.table-responsive
+  table.table.table-striped
+    thead
       tr
-        td= link_to log.id, log_path(log)
-        td= log.user_id
-        td= log.logged_at
-        td= log.ammount
-        td= log.is_expence
-        td= log.account_id
-        td= log.sub_category_id
-        td= log.store_id
-        td= log.item
-        td= log.memo
-        td=l log.created_at
-        td
-          = link_to t('.show', :default => t("helpers.links.show")), log_path(log), :class => 'btn btn-default btn-xs'
-          '
-          = link_to t('.edit', :default => t("helpers.links.edit")), edit_log_path(log), :class => 'btn btn-default btn-xs'
-          '
-          = link_to t('.destroy', :default => t("helpers.links.destroy")), log_path(log), :method => :delete, :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) }, :class => 'btn btn-xs btn-danger'
+        th= model_class.human_attribute_name(:logged_at)
+        th= model_class.human_attribute_name(:ammount)
+        th= model_class.human_attribute_name(:is_expence)
+        th= model_class.human_attribute_name(:account_id)
+        th= model_class.human_attribute_name(:sub_category_id)
+        th= model_class.human_attribute_name(:store_id)
+        th= model_class.human_attribute_name(:item)
+        th= model_class.human_attribute_name(:memo)
+    tbody
+      - @logs.each do |log|
+        tr
+          td=link_to l(log.logged_at), log_path(log)
+          td= log.ammount
+          td= log.is_expence
+          td= Account.find(log.account_id).name
+          td= SubCategory.find(log.sub_category_id).name
+          td= Store.find(log.store_id).name
+          td= log.item
+          td= log.memo
 
-= link_to t('.new', :default => t("helpers.links.new")), new_log_path, :class => 'btn btn-primary'

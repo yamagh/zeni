@@ -4,7 +4,7 @@ class LogsController < ApplicationController
   # GET /logs
   # GET /logs.json
   def index
-    @logs = Log.all
+    @logs = Log.where(user_id: current_user.id)
   end
 
   # GET /logs/1
@@ -25,6 +25,7 @@ class LogsController < ApplicationController
   # POST /logs.json
   def create
     @log = Log.new(log_params)
+    @log.user_id = current_user.id
 
     respond_to do |format|
       if @log.save

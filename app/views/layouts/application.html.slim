@@ -23,7 +23,7 @@ html lang="en"
       - if user_signed_in?
         = menu_group do
           = menu_item glyph(:signal) + ' ' + t(:DashBoard), "#"
-          = menu_item glyph(:plus)   + ' ' + t(:AddLog), logs_path
+          = menu_item glyph(:plus)   + ' ' + t(:AddLog), new_log_path
         = menu_group pull: :right do
           = drop_down current_user.email do
             = menu_item glyph(:plus)       + ' ' + t(:AddLog), logs_path

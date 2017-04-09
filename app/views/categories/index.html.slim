@@ -1,6 +1,9 @@
 - model_class = Category
 .page-header
-  h1=glyph(:tags) + ' ' + t('.title', :default => model_class.model_name.human.pluralize.titleize)
+  h1
+    .pull-left= glyph(:tags) + ' ' + t('.title', :default => model_class.model_name.human.pluralize.titleize)
+    .pull-right= link_to t('.new', :default => t("helpers.links.new")), new_category_path, :class => 'btn btn-primary'
+    .clearfix
 .table-responsive
   table.table.table-striped
     thead
@@ -11,4 +14,3 @@
         tr
           td= link_to category.name, category_path(category)
 
-= link_to t('.new', :default => t("helpers.links.new")), new_category_path, :class => 'btn btn-primary'

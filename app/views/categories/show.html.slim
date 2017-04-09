@@ -2,9 +2,9 @@
   h1
     .pull-left  = @category.name
     .pull-right
-      = link_to(t('.edit', :default => t("helpers.links.edit")), edit_category_path(@category), :class => 'btn btn-default')
+      = link_to :new, new_category_sub_category_path(@category), class: 'btn btn-primary'
       '
-      = link_to t('.destroy', :default => t("helpers.links.destroy")), category_path(@category), :method => "delete", :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) }, :class => 'btn btn-danger'
+      = link_to(t('.edit', :default => t("helpers.links.edit")), edit_category_path(@category), :class => 'btn btn-default')
     .clearfix
 
 - unless @sub_categories.nil?
@@ -19,7 +19,6 @@
           tr
             td= link_to sub_category.name, edit_category_sub_category_path(@category, sub_category)
   
-= link_to :new, new_category_sub_category_path(@category), class: 'btn btn-primary'
-'
 = link_to t('.back', :default => t("helpers.links.back")), categories_path, :class => 'btn btn-default'
-
+'
+= link_to t('.destroy', :default => t("helpers.links.destroy")), category_path(@category), :method => "delete", :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) }, :class => 'btn btn-danger'

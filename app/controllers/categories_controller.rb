@@ -4,12 +4,13 @@ class CategoriesController < ApplicationController
   # GET /categories
   # GET /categories.json
   def index
-    @categories = Category.all
+    @categories = Category.where(user_id: current_user.id).order(:order)
   end
 
   # GET /categories/1
   # GET /categories/1.json
   def show
+    @sub_categories = SubCategory.where(category_id: params[:id]).order(:order)
   end
 
   # GET /categories/new

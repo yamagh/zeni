@@ -25,10 +25,11 @@ class SubCategoriesController < ApplicationController
   # POST /sub_categories.json
   def create
     @sub_category = SubCategory.new(sub_category_params)
+    @sub_category.category_id = params[:category_id]
 
     respond_to do |format|
       if @sub_category.save
-        format.html { redirect_to @sub_category, notice: 'Sub category was successfully created.' }
+        format.html { redirect_to category_path(params[:category_id]), notice: 'Sub category was successfully created.' }
         format.json { render :show, status: :created, location: @sub_category }
       else
         format.html { render :new }
@@ -42,7 +43,7 @@ class SubCategoriesController < ApplicationController
   def update
     respond_to do |format|
       if @sub_category.update(sub_category_params)
-        format.html { redirect_to @sub_category, notice: 'Sub category was successfully updated.' }
+        format.html { redirect_to @category, notice: 'Sub category was successfully updated.' }
         format.json { render :show, status: :ok, location: @sub_category }
       else
         format.html { render :edit }
@@ -56,7 +57,7 @@ class SubCategoriesController < ApplicationController
   def destroy
     @sub_category.destroy
     respond_to do |format|
-      format.html { redirect_to sub_categories_url, notice: 'Sub category was successfully destroyed.' }
+      format.html { redirect_to category_path(@category), notice: 'Sub category was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
@@ -64,6 +65,7 @@ class SubCategoriesController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_sub_category
+      @category     = Category.find(params[:category_id])
       @sub_category = SubCategory.find(params[:id])
     end
 

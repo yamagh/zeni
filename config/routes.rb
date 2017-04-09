@@ -5,6 +5,9 @@ Rails.application.routes.draw do
     resources :sub_categories
   end
   resources :accounts
-  devise_for :users
   root to: 'logs#index'
+
+  devise_for :users, controllers: {
+    registrations: 'users/registrations'
+  }
 end

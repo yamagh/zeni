@@ -13,6 +13,6 @@ p
   strong Order:
   = @sub_category.order
 
-= link_to 'Edit', edit_sub_category_path(@sub_category)
+= link_to 'Edit', edit_category_sub_category_path([@category, @sub_category])
 '  |
-= link_to 'Back', sub_categories_path
+= link_to 'Back', category_path(@category) 

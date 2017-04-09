@@ -37,7 +37,7 @@ ActiveRecord::Schema.define(version: 20170405150918) do
 
   create_table "logs", force: :cascade do |t|
     t.integer  "user_id",                                         null: false
-    t.datetime "logged_at",       default: '2017-04-08 15:40:41', null: false
+    t.datetime "logged_at",       default: '2017-04-09 10:23:30', null: false
     t.decimal  "ammount",         default: "0.0",                 null: false
     t.boolean  "is_expence",      default: true,                  null: false
     t.integer  "account_id",                                      null: false

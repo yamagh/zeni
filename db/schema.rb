@@ -16,37 +16,37 @@ ActiveRecord::Schema.define(version: 20170405150918) do
   enable_extension "plpgsql"
 
   create_table "accounts", force: :cascade do |t|
-    t.integer  "user_id"
-    t.string   "name"
-    t.boolean  "is_disabled"
-    t.integer  "order"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
+    t.integer  "user_id",                     null: false
+    t.string   "name",                        null: false
+    t.boolean  "is_disabled", default: false, null: false
+    t.integer  "order",       default: 0,     null: false
+    t.datetime "created_at",                  null: false
+    t.datetime "updated_at",                  null: false
     t.index ["user_id"], name: "index_accounts_on_user_id", using: :btree
   end
 
   create_table "categories", force: :cascade do |t|
-    t.integer  "user_id"
-    t.string   "name"
-    t.boolean  "is_disabled"
-    t.integer  "order"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
+    t.integer  "user_id",                     null: false
+    t.string   "name",                        null: false
+    t.boolean  "is_disabled", default: false, null: false
+    t.integer  "order",       default: 0,     null: false
+    t.datetime "created_at",                  null: false
+    t.datetime "updated_at",                  null: false
     t.index ["user_id"], name: "index_categories_on_user_id", using: :btree
   end
 
   create_table "logs", force: :cascade do |t|
-    t.integer  "user_id"
-    t.datetime "logged_at"
-    t.decimal  "ammount"
-    t.boolean  "is_expence"
-    t.integer  "account_id"
-    t.integer  "sub_category_id"
+    t.integer  "user_id",                                         null: false
+    t.datetime "logged_at",       default: '2017-04-08 15:40:41', null: false
+    t.decimal  "ammount",         default: "0.0",                 null: false
+    t.boolean  "is_expence",      default: true,                  null: false
+    t.integer  "account_id",                                      null: false
+    t.integer  "sub_category_id",                                 null: false
     t.integer  "store_id"
-    t.string   "item"
+    t.string   "item",                                            null: false
     t.string   "memo"
-    t.datetime "created_at",      null: false
-    t.datetime "updated_at",      null: false
+    t.datetime "created_at",                                      null: false
+    t.datetime "updated_at",                                      null: false
     t.index ["account_id"], name: "index_logs_on_account_id", using: :btree
     t.index ["store_id"], name: "index_logs_on_store_id", using: :btree
     t.index ["sub_category_id"], name: "index_logs_on_sub_category_id", using: :btree
@@ -54,24 +54,24 @@ ActiveRecord::Schema.define(version: 20170405150918) do
   end
 
   create_table "stores", force: :cascade do |t|
-    t.integer  "user_id"
-    t.string   "name"
+    t.integer  "user_id",                     null: false
+    t.string   "name",                        null: false
     t.integer  "tel"
     t.string   "address"
-    t.boolean  "is_disabled"
-    t.integer  "order"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
+    t.boolean  "is_disabled", default: false, null: false
+    t.integer  "order",       default: 0,     null: false
+    t.datetime "created_at",                  null: false
+    t.datetime "updated_at",                  null: false
     t.index ["user_id"], name: "index_stores_on_user_id", using: :btree
   end
 
   create_table "sub_categories", force: :cascade do |t|
-    t.integer  "category_id"
-    t.string   "name"
-    t.boolean  "is_disabled"
-    t.integer  "order"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
+    t.integer  "category_id",                 null: false
+    t.string   "name",                        null: false
+    t.boolean  "is_disabled", default: false, null: false
+    t.integer  "order",       default: 0,     null: false
+    t.datetime "created_at",                  null: false
+    t.datetime "updated_at",                  null: false
     t.index ["category_id"], name: "index_sub_categories_on_category_id", using: :btree
   end
 

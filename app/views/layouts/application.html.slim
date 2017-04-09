@@ -22,17 +22,19 @@ html lang="en"
     = nav_bar fixed: :top, brand: "Zeni", responsive: true do
       - if user_signed_in?
         = menu_group do
-          = menu_item t(:DashBoard), "#"
-          = menu_item t(:AddLog), logs_path
+          = menu_item glyph(:signal) + ' ' + t(:DashBoard), "#"
+          = menu_item glyph(:plus)   + ' ' + t(:AddLog), logs_path
         = menu_group pull: :right do
           = drop_down current_user.email do
-            = menu_item t(:Log), logs_path
-            = menu_item t(:Account), accounts_path
-            = menu_item t(:Category), categories_path
-            = menu_item t(:Store), stores_path
+            = menu_item glyph(:plus)       + ' ' + t(:AddLog), logs_path
             = drop_down_divider
-            = menu_item t(:EditUser), edit_user_registration_path
-            = menu_item t(:LogOut), destroy_user_session_path, {method: :delete}
+            = menu_item glyph(:list_alt)   + ' ' + t(:Log), logs_path
+            = menu_item glyph(:th_large)   + ' ' + t(:Account), accounts_path
+            = menu_item glyph(:tags)       + ' ' + t(:Category), categories_path
+            = menu_item glyph(:map_marker) + ' ' + t(:Store), stores_path
+            = drop_down_divider
+            = menu_item glyph(:user)       + ' ' + t(:EditUser), edit_user_registration_path
+            = menu_item glyph(:off)        + ' ' + t(:LogOut), destroy_user_session_path, {method: :delete}
 
     .container
       .row

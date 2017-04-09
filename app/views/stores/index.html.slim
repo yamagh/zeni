@@ -1,31 +1,22 @@
-h1 Listing stores
-
-table
-  thead
-    tr
-      th User
-      th Name
-      th Tel
-      th Address
-      th Is disabled
-      th Order
-      th
-      th
-      th
-
-  tbody
-    - @stores.each do |store|
+- model_class = Store
+.page-header
+  h1
+    .pull-left
+      =t '.title', :default => model_class.model_name.human.pluralize.titleize
+    .pull-right
+      = link_to t('.new', :default => t("helpers.links.new")), new_store_path, :class => 'btn btn-primary'
+    .clearfix
+.table-responsive
+  table.table.table-striped
+    thead
       tr
-        td = store.user
-        td = store.name
-        td = store.tel
-        td = store.address
-        td = store.is_disabled
-        td = store.order
-        td = link_to 'Show', store
-        td = link_to 'Edit', edit_store_path(store)
-        td = link_to 'Destroy', store, data: { confirm: 'Are you sure?' }, method: :delete
+        th= model_class.human_attribute_name(:name)
+        th= model_class.human_attribute_name(:tel)
+        th= model_class.human_attribute_name(:address)
+    tbody
+      - @stores.each do |store|
+        tr
+          td= link_to store.name, store_path(store)
+          td= store.tel
+          td= store.address
 
-br
-
-= link_to 'New Store', new_store_path

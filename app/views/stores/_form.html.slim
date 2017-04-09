@@ -1,27 +1,8 @@
-= form_for @store do |f|
-  - if @store.errors.any?
-    #error_explanation
-      h2 = "#{pluralize(@store.errors.count, "error")} prohibited this store from being saved:"
-      ul
-        - @store.errors.full_messages.each do |message|
-          li = message
-
-  .field
-    = f.label :user
-    = f.text_field :user
-  .field
-    = f.label :name
-    = f.text_field :name
-  .field
-    = f.label :tel
-    = f.number_field :tel
-  .field
-    = f.label :address
-    = f.text_field :address
-  .field
-    = f.label :is_disabled
-    = f.check_box :is_disabled
-  .field
-    = f.label :order
-    = f.number_field :order
-  .actions = f.submit
+= bootstrap_form_for @store do |f|
+  = f.text_field :name
+  = f.text_field :tel
+  = f.text_field :address
+  = f.check_box  :is_disabled
+  = f.number_field :order
+  = f.submit nil, class: 'btn btn-primary'
+  = link_to t('.cancel', :default => t("helpers.links.cancel")), stores_path, class: 'btn'

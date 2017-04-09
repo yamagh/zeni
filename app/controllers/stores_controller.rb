@@ -4,7 +4,7 @@ class StoresController < ApplicationController
   # GET /stores
   # GET /stores.json
   def index
-    @stores = Store.all
+    @stores = Store.where(user_id: current_user.id)
   end
 
   # GET /stores/1
@@ -25,6 +25,7 @@ class StoresController < ApplicationController
   # POST /stores.json
   def create
     @store = Store.new(store_params)
+    @store.user_id = current_user.id
 
     respond_to do |format|
       if @store.save

@@ -4,7 +4,7 @@ class LogsController < ApplicationController
   # GET /logs
   # GET /logs.json
   def index
-    @logs = Log.where(user_id: current_user.id)
+    @logs = Log.where(user_id: current_user.id).order(logged_at: :desc)
   end
 
   # GET /logs/1

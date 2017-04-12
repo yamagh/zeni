@@ -1,13 +1,13 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
-one:
-  user: one
-  name: MyString
+food:
+  user: bob 
+  name: Food
   is_disabled: false
   order: 1
 
-two:
-  user: two
-  name: MyString
-  is_disabled: false
-  order: 1
+#two:
+#  user: two
+#  name: MyString
+#  is_disabled: false
+#  order: 1

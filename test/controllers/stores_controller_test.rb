@@ -2,7 +2,10 @@ require 'test_helper'
 
 class StoresControllerTest < ActionDispatch::IntegrationTest
   setup do
-    @store = stores(:one)
+    Warden.test_mode!
+    @user = users( :bob )
+    login_as(@user, :scope => :user)
+    @store = stores(:amazon)
   end
 
   test "should get index" do
@@ -20,7 +23,7 @@ class StoresControllerTest < ActionDispatch::IntegrationTest
       post stores_url, params: { store: { address: @store.address, is_disabled: @store.is_disabled, name: @store.name, order: @store.order, tel: @store.tel, user_id: @store.user_id } }
     end
 
-    assert_redirected_to store_url(Store.last)
+    assert_redirected_to store_url(Store.last) + '?locale=ja'
   end
 
   test "should show store" do
@@ -35,7 +38,7 @@ class StoresControllerTest < ActionDispatch::IntegrationTest
 
   test "should update store" do
     patch store_url(@store), params: { store: { address: @store.address, is_disabled: @store.is_disabled, name: @store.name, order: @store.order, tel: @store.tel, user_id: @store.user_id } }
-    assert_redirected_to store_url(@store)
+    assert_redirected_to store_url(@store) + '?locale=ja'
   end
 
   test "should destroy store" do

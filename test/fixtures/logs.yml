@@ -1,23 +1,23 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  user: one
+  user: bob
   logged_at: 2017-04-06 00:09:18
   ammount: 9.99
   is_expence: false
-  account: one
-  sub_category: one
-  store: one
-  item: MyString
-  memo: MyString
+  account: saifu
+  sub_category: breakfast
+  store: amazon
+  item: Banana
+  memo: Made in China
 
-two:
-  user: two
-  logged_at: 2017-04-06 00:09:18
-  ammount: 9.99
-  is_expence: false
-  account: two
-  sub_category: two
-  store: two
-  item: MyString
-  memo: MyString
+#two:
+#  user: two
+#  logged_at: 2017-04-06 00:09:18
+#  ammount: 9.99
+#  is_expence: false
+#  account: two
+#  sub_category: two
+#  store: two
+#  item: MyString
+#  memo: MyString

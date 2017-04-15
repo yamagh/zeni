@@ -15,6 +15,7 @@ class LogsController < ApplicationController
   # GET /logs/new
   def new
     @log = Log.new
+    @categories = Category.where(user_id: current_user.id).order(:order)
   end
 
   # GET /logs/1/edit

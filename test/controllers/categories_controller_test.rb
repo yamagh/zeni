@@ -2,7 +2,10 @@ require 'test_helper'
 
 class CategoriesControllerTest < ActionDispatch::IntegrationTest
   setup do
-    @category = categories(:one)
+    Warden.test_mode!
+    @user = users( :bob )
+    login_as(@user, :scope => :user)
+    @category = categories(:food)
   end
 
   test "should get index" do
@@ -20,7 +23,7 @@ class CategoriesControllerTest < ActionDispatch::IntegrationTest
       post categories_url, params: { category: { is_disabled: @category.is_disabled, name: @category.name, order: @category.order, user_id: @category.user_id } }
     end
 
-    assert_redirected_to category_url(Category.last)
+    assert_redirected_to category_url(Category.last) + '?locale=ja'
   end
 
   test "should show category" do
@@ -35,7 +38,7 @@ class CategoriesControllerTest < ActionDispatch::IntegrationTest
 
   test "should update category" do
     patch category_url(@category), params: { category: { is_disabled: @category.is_disabled, name: @category.name, order: @category.order, user_id: @category.user_id } }
-    assert_redirected_to category_url(@category)
+    assert_redirected_to category_url(@category) + '?locale=ja'
   end
 
   test "should destroy category" do
@@ -43,6 +46,6 @@ class CategoriesControllerTest < ActionDispatch::IntegrationTest
       delete category_url(@category)
     end
 
-    assert_redirected_to categories_url
+    assert_redirected_to categories_url + '?locale=ja'
   end
 end

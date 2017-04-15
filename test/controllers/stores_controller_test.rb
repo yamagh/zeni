@@ -46,6 +46,6 @@ class StoresControllerTest < ActionDispatch::IntegrationTest
       delete store_url(@store)
     end
 
-    assert_redirected_to stores_url
+    assert_redirected_to stores_url + '?locale=ja'
   end
 end

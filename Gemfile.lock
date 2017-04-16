@@ -46,6 +46,8 @@ GEM
     bootstrap_form (2.6.0)
     builder (3.2.3)
     byebug (9.0.6)
+    chart-js-rails (0.1.2)
+      railties (> 3.1)
     chartkick (2.2.3)
     coderay (1.1.1)
     coffee-rails (4.2.1)
@@ -236,6 +238,7 @@ DEPENDENCIES
   bootstrap-datepicker-rails
   bootstrap_form
   byebug
+  chart-js-rails
   chartkick
   coffee-rails (~> 4.2)
   devise

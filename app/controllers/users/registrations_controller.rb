@@ -77,6 +77,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
       c13 = Category.create user_id: current_user.id, name: '税金',       is_disabled: false, order: 13
       c14 = Category.create user_id: current_user.id, name: '大型出費',   is_disabled: false, order: 14
       c15 = Category.create user_id: current_user.id, name: 'その他',     is_disabled: false, order: 15
+      c16 = Category.create user_id: current_user.id, name: '収入',       is_disabled: false, order: 16
 
       SubCategory.create category_id: c1.id,  name: '朝ご飯',                     is_disabled: false, order: 1
       SubCategory.create category_id: c1.id,  name: '昼ご飯',                     is_disabled: false, order: 2
@@ -214,6 +215,21 @@ class Users::RegistrationsController < Devise::RegistrationsController
       SubCategory.create category_id: c15.id, name: '電子マネーにチャージ',       is_disabled: false, order: 8
       SubCategory.create category_id: c15.id, name: 'その他',                     is_disabled: false, order: 9
 
+      SubCategory.create category_id: c16.id, name: '基本給',                     is_disabled: false, order: 1
+      SubCategory.create category_id: c16.id, name: '技術手当',                   is_disabled: false, order: 2
+      SubCategory.create category_id: c16.id, name: '住宅手当',                   is_disabled: false, order: 3
+      SubCategory.create category_id: c16.id, name: '時間外手当',                 is_disabled: false, order: 4
+      SubCategory.create category_id: c16.id, name: '60超残業手当',               is_disabled: false, order: 5
+      SubCategory.create category_id: c16.id, name: '深夜勤務手当',               is_disabled: false, order: 6
+      SubCategory.create category_id: c16.id, name: '通勤手当',                   is_disabled: false, order: 7
+      SubCategory.create category_id: c16.id, name: '臨時収入',                   is_disabled: false, order: 8
+      SubCategory.create category_id: c16.id, name: '賞与',                       is_disabled: false, order: 9
+      SubCategory.create category_id: c16.id, name: '立替金返済',                 is_disabled: false, order: 10
+      SubCategory.create category_id: c16.id, name: '事業所得',                   is_disabled: false, order: 11
+      SubCategory.create category_id: c16.id, name: '年末調整',                   is_disabled: false, order: 12
+      SubCategory.create category_id: c16.id, name: 'その他',                     is_disabled: false, order: 13
+
       Account.create user_id: current_user.id, name: '財布', is_disabled: false, order: 1
+      Account.create user_id: current_user.id, name: '銀行', is_disabled: false, order: 2
     end
 end

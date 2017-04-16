@@ -63,6 +63,10 @@ class SubCategoriesController < ApplicationController
     end
   end
 
+  def sub_categories
+    @sub_categories = SubCategory.where(category_id: params[:category_id]).order(:order)
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_sub_category

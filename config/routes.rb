@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   resources :categories do
     resources :sub_categories
   end
+  get 'sub_categories/sub_categories'
   resources :accounts
   root to: 'logs#index'
 

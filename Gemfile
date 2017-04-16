@@ -61,4 +61,5 @@ gem 'twitter-bootstrap-rails'
 #gem 'less-rails'
 gem 'bootstrap-datepicker-rails'
 gem 'bootstrap_form'
+gem "chartkick"
 

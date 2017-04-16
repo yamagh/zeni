@@ -19,13 +19,13 @@ html lang="en"
 
 
   body
-    = nav_bar fixed: :top, brand: "Zeni", responsive: true do
+    = nav_bar fixed: :top, brand: "Zeni", brand_link: dashboards_show_path, responsive: true do
       - if user_signed_in?
         = menu_group do
-          = menu_item glyph(:signal) + ' ' + t(:DashBoard), "#"
           = menu_item glyph(:plus)   + ' ' + t(:AddLog), new_log_path
         = menu_group pull: :right do
           = drop_down current_user.email do
+            = menu_item glyph(:signal) + ' ' + t(:DashBoard), dashboards_show_path
             = menu_item glyph(:plus)       + ' ' + t(:AddLog), new_log_path
             = drop_down_divider
             = menu_item glyph(:list_alt)   + ' ' + t(:Log), logs_path

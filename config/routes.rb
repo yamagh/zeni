@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  get 'dashboards/show'
+
   resources :logs
   resources :stores
   resources :categories do

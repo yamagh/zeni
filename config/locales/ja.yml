@@ -1,6 +1,45 @@
 ---
 ja:
   activerecord:
+    models:
+      log: 記録
+      account: 口座
+      category: カテゴリ
+      sub_category: サブカテゴリ
+      store: お店
+    attributes:
+      log:
+        logged_at: 記録日
+        ammount: 金額
+        is_expence: 支出
+        account: 口座
+        account_id: 口座
+        sub_category: サブカテゴリ
+        sub_category_id: サブカテゴリ
+        store: お店
+        store_id: お店
+        item: 品名
+        memo: メモ
+      account:
+        user_id: ユーザ
+        name: 名前
+        is_disabled: 無効
+        order: 順番
+      category:
+        name: 名前
+        is_disabled: 無効
+        order: 順番
+      sub_category:
+        name: 名前
+        is_disabled: 無効
+        order: 順番
+      store:
+        user_id: ユーザ
+        name: 名前
+        tel: TEL
+        address: 住所
+        is_disabled: 無効
+        order: 順番
     errors:
       messages:
         record_invalid: "バリデーションに失敗しました: %{errors}"
@@ -212,16 +251,6 @@ ja:
     store: お店
     edit_user: ユーザ設定
     log_out: ログアウト
-  model:
-    log:
-      logged_at: 記録日
-      ammount: 金額
-      is_expence: 支出
-      account: 口座
-      sub_category: サブカテゴリ
-      store: お店
-      item: 品名
-      memo: メモ
   breadcrumbs:
     application:
       root: "Index"
@@ -241,3 +270,7 @@ ja:
       save: "%{model} 保存"
       new: "%{model} 追加"
       delete: "%{model} 削除"
+  dashboards: ダッシュボード
+  this_month: 今月
+  previous_month: 前月
+  total: トータル

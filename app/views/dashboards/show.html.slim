@@ -1,6 +1,6 @@
-h1 Dashboards
+h1=t :dashboards
 
-h2 This Month
+h2=t :this_month
 .text-center
   ul.list-inline
     li 
@@ -10,7 +10,7 @@ h2 This Month
       span カテゴリ別
       = pie_chart Log.joins(sub_category: :category).where(logged_at: DateTime.now.beginning_of_month .. DateTime.now.end_of_month, is_expence: true).group('categories.name').order('categories.name').sum(:ammount)
 
-h2 Total
+h2=t :total
 .text-center
   ul.list-inline
     li 

@@ -1,6 +1,6 @@
 h1=t :dashboards
 
-h2=t :this_month
+h2.text-center=t :this_month
 .text-center
   ul.list-inline
     li 
@@ -10,7 +10,17 @@ h2=t :this_month
       span カテゴリ別
       = pie_chart Log.joins(sub_category: :category).where(logged_at: DateTime.now.beginning_of_month .. DateTime.now.end_of_month, is_expence: true).group('categories.name').order('categories.name').sum(:ammount)
 
-h2=t :total
+h2.text-center=t :previous_month
+.text-center
+  ul.list-inline
+    li 
+      span 収支
+      = pie_chart Log.where(logged_at: DateTime.now.months_ago(1).beginning_of_month .. DateTime.now.months_ago(1).end_of_month).group(:is_expence).order(:is_expence).sum(:ammount)
+    li
+      span カテゴリ別
+      = pie_chart Log.joins(sub_category: :category).where(logged_at: DateTime.now.months_ago(1).beginning_of_month .. DateTime.now.months_ago(1).end_of_month, is_expence: true).group('categories.name').order('categories.name').sum(:ammount)
+
+h2.text-center=t :total
 .text-center
   ul.list-inline
     li 

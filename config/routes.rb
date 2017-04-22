@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  root to: 'dashboards#show'
   get 'dashboards/show'
 
   resources :logs
@@ -9,7 +10,6 @@ Rails.application.routes.draw do
   end
   get 'sub_categories/sub_categories'
   resources :accounts
-  root to: 'logs#index'
 
   devise_for :users, controllers: {
     registrations: 'users/registrations'

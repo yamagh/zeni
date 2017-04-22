@@ -1,15 +1,5 @@
 h1 Dashboards
 
-h2 Total
-.text-center
-  ul.list-inline
-    li 
-      span 収支
-      = pie_chart Log.group(:is_expence).order(:is_expence).sum(:ammount)
-    li
-      span カテゴリ別
-      = pie_chart Log.joins(sub_category: :category).where(is_expence: true).group('categories.name').order('categories.name').sum(:ammount)
-
 h2 This Month
 .text-center
   ul.list-inline
@@ -19,4 +9,14 @@ h2 This Month
     li
       span カテゴリ別
       = pie_chart Log.joins(sub_category: :category).where(logged_at: DateTime.now.beginning_of_month .. DateTime.now.end_of_month, is_expence: true).group('categories.name').order('categories.name').sum(:ammount)
+
+h2 Total
+.text-center
+  ul.list-inline
+    li 
+      span 収支
+      = pie_chart Log.group(:is_expence).order(:is_expence).sum(:ammount)
+    li
+      span カテゴリ別
+      = pie_chart Log.joins(sub_category: :category).where(is_expence: true).group('categories.name').order('categories.name').sum(:ammount)
 

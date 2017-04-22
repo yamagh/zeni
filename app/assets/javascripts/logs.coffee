@@ -5,4 +5,6 @@
 $(document).on 'turbolinks:load', ->
   $('#category_category_id').change ->
     $.get url: "/sub_categories/sub_categories", data: { category_id: $('#category_category_id').has('option:selected').val() }
+  $('#log_sub_category_id').change ->
+    $.get url: "/last_store", data: { sub_category_id: $('#log_sub_category_id').has('option:selected').val() }
 

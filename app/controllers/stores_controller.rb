@@ -62,6 +62,16 @@ class StoresController < ApplicationController
     end
   end
 
+  # GET /last_store
+  def last_store
+    @store_id = Store
+      .joins(logs: :sub_category)
+      .where(stores: {user_id: current_user.id}, sub_categories: {id: params[:sub_category_id]})
+      .order("logged_at desc")
+      .select("stores.id")
+      .first
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_store

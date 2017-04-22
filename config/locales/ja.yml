@@ -212,3 +212,32 @@ ja:
     store: お店
     edit_user: ユーザ設定
     log_out: ログアウト
+  model:
+    log:
+      logged_at: 記録日
+      ammount: 金額
+      is_expence: 支出
+      account: 口座
+      sub_category: サブカテゴリ
+      store: お店
+      item: 品名
+      memo: メモ
+  breadcrumbs:
+    application:
+      root: "Index"
+    pages:
+      pages: "Pages"
+  helpers:
+    actions: "Actions"
+    links:
+      back: 戻る
+      cancel: キャンセル
+      confirm: 続行しますか?
+      destroy: 削除
+      new: 追加
+      edit: 編集
+    titles:
+      edit: "%{model} 編集"
+      save: "%{model} 保存"
+      new: "%{model} 追加"
+      delete: "%{model} 削除"

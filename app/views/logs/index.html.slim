@@ -8,14 +8,14 @@
   table.table.table-striped
     thead
       tr
-        th= model_class.human_attribute_name(:logged_at)
-        th= model_class.human_attribute_name(:ammount)
-        th= model_class.human_attribute_name(:is_expence)
-        th= model_class.human_attribute_name(:account_id)
-        th= model_class.human_attribute_name(:sub_category_id)
-        th= model_class.human_attribute_name(:store_id)
-        th= model_class.human_attribute_name(:item)
-        th= model_class.human_attribute_name(:memo)
+        th= t('model.log.logged_at')
+        th= t('model.log.ammount')
+        th= t('model.log.is_expence')
+        th= t('model.log.account')
+        th= t('model.log.sub_category')
+        th= t('model.log.store')
+        th= t('model.log.item')
+        th= t('model.log.memo')
     tbody
       - @logs.each do |log|
         tr

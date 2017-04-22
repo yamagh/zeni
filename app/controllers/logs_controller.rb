@@ -14,7 +14,7 @@ class LogsController < ApplicationController
 
   # GET /logs/new
   def new
-    @log = Log.new
+    @log = Log.new(logged_at: DateTime.now)
     @categories = Category.where(user_id: current_user.id).order(:order)
   end
 

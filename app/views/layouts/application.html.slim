@@ -22,19 +22,19 @@ html lang="en"
     = nav_bar fixed: :top, brand: "Zeni", brand_link: dashboards_show_path, responsive: true do
       - if user_signed_in?
         = menu_group do
-          = menu_item glyph(:plus)   + ' ' + t(:AddLog), new_log_path
+          = menu_item glyph(:plus)   + ' ' + t('nav.add_log'), new_log_path
         = menu_group pull: :right do
           = drop_down current_user.email do
-            = menu_item glyph(:signal) + ' ' + t(:DashBoard), dashboards_show_path
-            = menu_item glyph(:plus)       + ' ' + t(:AddLog), new_log_path
+            = menu_item glyph(:signal) + ' ' + t('nav.dashboard'), dashboards_show_path
+            = menu_item glyph(:plus)       + ' ' + t('nav.add_log'), new_log_path
             = drop_down_divider
-            = menu_item glyph(:list_alt)   + ' ' + t(:Log), logs_path
-            = menu_item glyph(:th_large)   + ' ' + t(:Account), accounts_path
-            = menu_item glyph(:tags)       + ' ' + t(:Category), categories_path
-            = menu_item glyph(:map_marker) + ' ' + t(:Store), stores_path
+            = menu_item glyph(:list_alt)   + ' ' + t('nav.log'), logs_path
+            = menu_item glyph(:th_large)   + ' ' + t('nav.account'), accounts_path
+            = menu_item glyph(:tags)       + ' ' + t('nav.category'), categories_path
+            = menu_item glyph(:map_marker) + ' ' + t('nav.store'), stores_path
             = drop_down_divider
-            = menu_item glyph(:user)       + ' ' + t(:EditUser), edit_user_registration_path
-            = menu_item glyph(:off)        + ' ' + t(:LogOut), destroy_user_session_path, {method: :delete}
+            = menu_item glyph(:user)       + ' ' + t('nav.edit_user'), edit_user_registration_path
+            = menu_item glyph(:off)        + ' ' + t('nav.log_out'), destroy_user_session_path, {method: :delete}
 
     .container
       .row

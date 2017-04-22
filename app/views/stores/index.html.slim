@@ -10,12 +10,14 @@
   table.table.table-striped
     thead
       tr
+        th= model_class.human_attribute_name(:order)
         th= model_class.human_attribute_name(:name)
         th= model_class.human_attribute_name(:tel)
         th= model_class.human_attribute_name(:address)
     tbody
       - @stores.each do |store|
         tr
+          td= store.order
           td= link_to store.name, store_path(store)
           td= store.tel
           td= store.address

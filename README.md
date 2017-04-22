@@ -1,24 +1,22 @@
-# README
+# Zeni
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+シンプルにお金の管理をするための家計簿アプリです。
+既存の家計簿アプリは次のような点を解結します。
 
-Things you may want to cover:
+- データをダウンロードするには有料会員でなければ出来ない
+- ダウンロード出来る内容が不足している
+- 高機能すぎて使いにくい
 
-* Ruby version
+# Feature
 
-* System dependencies
+- シンプルな入力画面と統計画面
+- 自分の全てのデータをダウンロード可能
 
-* Configuration
+# TODO
 
-* Database creation
+- CSV 出力機能の追加
+- 詳細な統計ページの追加
+- お店ごとの収支統計ページの追加
+- ログ追加画面でカテゴリ、サブカテゴリを選択した時、前回の入力したお店を自動設定
+- レシート画像から登録
 
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...

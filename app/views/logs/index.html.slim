@@ -19,7 +19,7 @@
     tbody
       - @logs.each do |log|
         tr
-          td=link_to l(log.logged_at), log_path(log)
+          td=link_to l(log.logged_at, format: :short), log_path(log)
           td= log.ammount
           td= log.is_expence
           td= Account.find(log.account_id).name

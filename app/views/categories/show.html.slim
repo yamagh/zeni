@@ -10,11 +10,15 @@
     table.table.table-striped
       thead
         tr
+          th= model_class.human_attribute_name(:order)
           th= model_class.human_attribute_name(:name)
+          th= model_class.human_attribute_name(:is_disabled)
       tbody
         - @sub_categories.each do |sub_category|
           tr
+            td= link_to sub_category.order, edit_category_sub_category_path(@category, sub_category)
             td= link_to sub_category.name, edit_category_sub_category_path(@category, sub_category)
+            td= sub_category.is_disabled
 .actions  
   = link_to :new, new_category_sub_category_path(@category), class: 'btn btn-block btn-primary'
 .pull-left

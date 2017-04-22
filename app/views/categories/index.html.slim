@@ -8,9 +8,11 @@
   table.table.table-striped
     thead
       tr
+        th= model_class.human_attribute_name(:order)
         th= model_class.human_attribute_name(:name)
     tbody
       - @categories.each do |category|
         tr
+          td= link_to category.order, category_path(category)
           td= link_to category.name, category_path(category)
 

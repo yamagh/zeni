@@ -1,33 +1,28 @@
-h1 支出
-ul.list-inline.text-center
-  - @ex_categories_months.each_with_index do |e, i|
-    - unless e.empty?
-      li
-        = "#{DateTime.now.months_ago(i).month}月"
-        = pie_chart @ex_categories_months[i], donut: true
-  li 
-    span 直近1年
-    = line_chart @ex_categories_last_year, id: "ex_category_months", legend: false, width: "300px", responsive: true, maintainAspectRatio: false
+.container
+  h1.page-header 支出
+  .row.text-center
+    - @ex_categories_months.each_with_index do |e, i|
+      .col-sm-4
+        h2= "#{DateTime.now.months_ago(i).month}月"
+        = pie_chart(e, donut: true) unless e.empty?
+    .col-sm-12
+      = line_chart @ex_categories_last_year, legend: false
 
-h1 収入
-ul.list-inline.text-center
-  - @in_categories_months.each_with_index do |e, i|
-    - unless e.empty?
-      li
-        = "#{DateTime.now.months_ago(i).month}月"
-        = pie_chart @in_categories_months[i], donut: true
-  li 
-    span 直近1年
-    = line_chart @in_categories_last_year, id: "in_category_months", legend: false, width: "300px", responsive: true, maintainAspectRatio: false
+  h1.page-header 収入
+  .row.text-center
+    - @in_categories_months.each_with_index do |e, i|
+      .col-sm-4
+        h2= "#{DateTime.now.months_ago(i).month}月"
+        = pie_chart(e, donut: true) unless e.empty?
+    .col-sm-12
+      = line_chart @in_categories_last_year, legend: false
 
-h1 収支
-ul.list-inline.text-center
-  - @expence_months.each_with_index do |e, i|
-    - unless e.empty?
-      li
-        = "#{DateTime.now.months_ago(i).month}月"
-        = pie_chart @expence_months[i], donut: true
-  li 
-    span 直近3ヶ月
-    = line_chart @expence_last_year
+  h1.page-header 収支
+  .row.text-center
+    - @expence_months.each_with_index do |e, i|
+      .col-sm-4
+        h2= "#{DateTime.now.months_ago(i).month}月"
+        = pie_chart(e, donut: true) unless e.empty?
+    .col-sm-12
+      = line_chart @expence_last_year, legend: false
 

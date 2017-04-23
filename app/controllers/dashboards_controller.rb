@@ -1,16 +1,16 @@
 class DashboardsController < ApplicationController
   def show
-    @ex_categories_months    = [*0..4].map{|m|categories_month(m,true)}
+    @ex_categories_months    = [*0..2].map{|m|categories_month(m,true)}
     @ex_categories_last_year = Category.where(user_id: current_user.id).map do |c|
       { name: c.name, data: [*0..11].reverse.map{|n|category_month(c.id,n,true)} }
     end
 
-    @in_categories_months    = [*0..4].map{|m|categories_month(m,false)}
+    @in_categories_months    = [*0..2].map{|m|categories_month(m,false)}
     @in_categories_last_year = Category.where(user_id: current_user.id).map do |c|
       { name: c.name, data: [*0..11].reverse.map{|n|category_month(c.id,n,false)} }
     end
 
-    @expence_months = [*0..4].map{|m|balance_month(m)}
+    @expence_months = [*0..2].map{|m|balance_month(m)}
     @expence_last_year = 
       [{ name: "expence", data: [*0..11].reverse.map{|n|[DateTime.now.months_ago(n).month, balance_month(n)[true]]}},
        { name: "income",  data: [*0..11].reverse.map{|n|[DateTime.now.months_ago(n).month, balance_month(n)[false]]}}]

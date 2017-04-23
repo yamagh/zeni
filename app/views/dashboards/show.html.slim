@@ -1,32 +1,33 @@
-h1=t :dashboards
+h1 支出
+ul.list-inline.text-center
+  - @ex_categories_months.each_with_index do |e, i|
+    - unless e.empty?
+      li
+        = "#{DateTime.now.months_ago(i).month}月"
+        = pie_chart @ex_categories_months[i], donut: true
+  li 
+    span 直近1年
+    = line_chart @ex_categories_last_year, id: "ex_category_months", legend: false, width: "300px", responsive: true, maintainAspectRatio: false
 
-h2.text-center=t :this_month
-.text-center
-  ul.list-inline
-    li 
-      span 収支
-      = pie_chart Log.where(logged_at: DateTime.now.beginning_of_month .. DateTime.now.end_of_month).group(:is_expence).order(:is_expence).sum(:ammount)
-    li
-      span カテゴリ別
-      = pie_chart Log.joins(sub_category: :category).where(logged_at: DateTime.now.beginning_of_month .. DateTime.now.end_of_month, is_expence: true).group('categories.name').order('categories.name').sum(:ammount)
+h1 収入
+ul.list-inline.text-center
+  - @in_categories_months.each_with_index do |e, i|
+    - unless e.empty?
+      li
+        = "#{DateTime.now.months_ago(i).month}月"
+        = pie_chart @in_categories_months[i], donut: true
+  li 
+    span 直近1年
+    = line_chart @in_categories_last_year, id: "in_category_months", legend: false, width: "300px", responsive: true, maintainAspectRatio: false
 
-h2.text-center=t :previous_month
-.text-center
-  ul.list-inline
-    li 
-      span 収支
-      = pie_chart Log.where(logged_at: DateTime.now.months_ago(1).beginning_of_month .. DateTime.now.months_ago(1).end_of_month).group(:is_expence).order(:is_expence).sum(:ammount)
-    li
-      span カテゴリ別
-      = pie_chart Log.joins(sub_category: :category).where(logged_at: DateTime.now.months_ago(1).beginning_of_month .. DateTime.now.months_ago(1).end_of_month, is_expence: true).group('categories.name').order('categories.name').sum(:ammount)
-
-h2.text-center=t :total
-.text-center
-  ul.list-inline
-    li 
-      span 収支
-      = pie_chart Log.group(:is_expence).order(:is_expence).sum(:ammount)
-    li
-      span カテゴリ別
-      = pie_chart Log.joins(sub_category: :category).where(is_expence: true).group('categories.name').order('categories.name').sum(:ammount)
+h1 収支
+ul.list-inline.text-center
+  - @expence_months.each_with_index do |e, i|
+    - unless e.empty?
+      li
+        = "#{DateTime.now.months_ago(i).month}月"
+        = pie_chart @expence_months[i], donut: true
+  li 
+    span 直近3ヶ月
+    = line_chart @expence_last_year
 

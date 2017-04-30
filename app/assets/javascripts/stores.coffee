@@ -7,6 +7,6 @@ $(document).on 'turbolinks:load', ->
     details: "form"
     detailsAttribute: "data-geo"
     types: ["geocode", "establishment"]
+    location: [$("#store_lat").val(), $("#store_lng").val()]
   }
-  $("#find").click ->
-    $("#geocomplete").trigger("geocode")
+

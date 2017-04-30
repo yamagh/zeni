@@ -19,5 +19,6 @@
 //= require bootstrap-datepicker/locales/bootstrap-datepicker.es.js
 //= require Chart.bundle
 //= require chartkick
+//= require geocomplete
 //= require_tree .
 

@@ -1,8 +1,12 @@
 = bootstrap_form_for @store do |f|
-  = f.text_field :name
-  = f.telephone_field :tel
-  = f.text_field :address
-  = f.check_box  :is_disabled
-  = f.number_field :order
+  = search_field :find, :query, {class: 'form-control', id: 'geocomplete'}
+  .map_canvas
+  = f.text_field      :name,            {'data-geo' => 'name'}
+  = f.telephone_field :tel,             {'data-geo' => 'formatted_phone_number'}
+  = f.text_field      :address,         {'data-geo' => 'formatted_address'}
+  = f.number_field    :lat, {step: :any, 'data-geo' => 'lat'}
+  = f.number_field    :lng, {step: :any, 'data-geo' => 'lng'}
+  = f.check_box       :is_disabled
+  = f.number_field    :order
   = f.submit nil, class: 'btn btn-primary'
   = link_to t('.cancel', :default => t("helpers.links.cancel")), stores_path, class: 'btn'

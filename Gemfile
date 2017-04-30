@@ -64,4 +64,6 @@ gem 'bootstrap_form'
 gem 'chart-js-rails'
 gem 'chartkick'
 gem 'kaminari'
+#gem 'google_places'
+gem 'geocomplete_rails'
 

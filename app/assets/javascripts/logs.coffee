@@ -8,4 +8,7 @@ $(document).on 'turbolinks:load', ->
       $.get url: "/last_store", data: { sub_category_id: $('#log_sub_category_id').val() }
   $('#log_sub_category_id').change ->
     $.get url: "/last_store", data: { sub_category_id: $('#log_sub_category_id').has('option:selected').val() }
+  $('.toggle-search-cond').click ->
+    $('.search-cond').toggle()
+  $('.search-cond').hide()
 

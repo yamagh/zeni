@@ -66,4 +66,5 @@ gem 'chartkick'
 gem 'kaminari'
 #gem 'google_places'
 gem 'geocomplete_rails'
+gem 'ransack'
 

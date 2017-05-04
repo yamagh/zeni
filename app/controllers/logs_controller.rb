@@ -4,7 +4,17 @@ class LogsController < ApplicationController
   # GET /logs
   # GET /logs.json
   def index
-    @logs = Log.where(user_id: current_user.id).order(logged_at: :desc).page(params[:page]).per(50)
+    @q = Log.ransack(params[:q])
+    @logs = @q.result(distinct: true)
+              .includes([sub_category: :category], :store)
+              .where(user_id: current_user.id)
+              .order(logged_at: :desc)
+              .page(params[:page])
+              .per(50)
+    @accounts       = Account.where(user_id: current_user.id).order(:order)
+    @categories     = Category.where(user_id: current_user.id).order(:order)
+    @sub_categories = SubCategory.includes(:category).where(categories: {user_id: current_user.id}).order(:order)
+    @stores         = Store.where(user_id: current_user.id).order(:order)
   end
 
   # GET /logs/1

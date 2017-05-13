@@ -17,34 +17,34 @@
     = f.label         :is_expence,      {class: 'control-label'}
     = f.check_box     :is_expence_eq, {checked: true}, {class: 'checkbox'}
   .form-group
-    = f.label         :account,      {class: 'control-label'}
+    = f.label         :account_id,      {class: 'control-label'}
     = f.select        :account_id_eq, \
                       content_tag(:option,'',value: "") + \
                       options_from_collection_for_select(@accounts, :id, :name, @q.account_id_eq), \
                       {}, {class: 'form-control'}
   .form-group
-    = f.label         :category, {class: 'control-label'}
+    = f.label         :category_id, {class: 'control-label'}
     = f.select        :sub_category_category_id_eq, \
                       content_tag(:option,'',value: "") + \
                       options_from_collection_for_select(@categories, :id, :name, @q.sub_category_category_id_eq), \
                       {}, {class: 'form-control'}
   .form-group
-    = f.label         :sub_category,      {class: 'control-label'}
+    = f.label         :sub_category_id,      {class: 'control-label'}
     = f.select        :sub_category_id_eq, \
                       content_tag(:option,'',value: "") + \
                       options_from_collection_for_select(@sub_categories, :id, :name, @q.sub_category_id_eq), \
                       {}, {class: 'form-control'}
   .form-group
-    = f.label         :store,      {class: 'control-label'}
+    = f.label         :store_id,      {class: 'control-label'}
     = f.select        :store_id_eq, \
                       content_tag(:option,'',value: "") + \
                       options_from_collection_for_select(@stores, :id, :name, @q.store_id_eq), \
                       {}, {class: 'form-control'}
   .form-group
-    = f.label         :item,      {class: 'control-label'}
+    = f.label         :item_cont,      {class: 'control-label'}
     = f.search_field  :item_cont, {class: 'form-control'}
   .form-group
-    = f.label         :memo,      {class: 'control-label'}
+    = f.label         :memo_cont,      {class: 'control-label'}
     = f.search_field  :memo_cont, {class: 'form-control'}
   .form-group
     = f.submit class: 'btn btn-primary btn-block'

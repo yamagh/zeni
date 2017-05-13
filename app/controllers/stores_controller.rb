@@ -4,7 +4,8 @@ class StoresController < ApplicationController
   # GET /stores
   # GET /stores.json
   def index
-    @stores = Store.where(user_id: current_user.id).order(:order)
+    @q = Store.ransack(params[:q])
+    @stores = @q.result(distinct: true).where(user_id: current_user.id).order(:order)
   end
 
   # GET /stores/1

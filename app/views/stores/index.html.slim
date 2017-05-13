@@ -6,6 +6,21 @@
     .pull-right
       = link_to t('.new', :default => t("helpers.links.new")), new_store_path, :class => 'btn btn-primary'
     .clearfix
+
+.toggle-search-cond.btn.btn-default.btn-block 検索条件を表示
+.well.search-cond= search_form_for @q do |f|
+  .form-group
+    = f.label        :name_cont, {class: 'control-label'}
+    = f.search_field :name_cont, {class: 'form-control'}
+  .form-group
+    = f.label        :tel_cont, {class: 'control-label'}
+    = f.search_field :tel_cont, {class: 'form-control'}
+  .form-group
+    = f.label        :address_cont, {class: 'control-label'}
+    = f.search_field :address_cont, {class: 'form-control'}
+  .form-group
+    = f.submit class: 'btn btn-primary btn-block'
+
 .table-responsive
   table.table.table-striped
     thead

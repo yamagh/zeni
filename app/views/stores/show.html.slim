@@ -3,9 +3,11 @@
   h1=t '.title', :default => model_class.model_name.human.titleize
 
 p
-  strong= model_class.human_attribute_name(:user_id) + ':'
-  br
-  = @store.user_id
+  = hidden_field :find, :query, {id: 'geocomplete'}
+  = hidden_field :store, :lat
+  = hidden_field :store, :lng
+  .map_canvas
+
 p
   strong= model_class.human_attribute_name(:name) + ':'
   br

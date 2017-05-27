@@ -3,10 +3,6 @@
   h1=t '.title', :default => model_class.model_name.human.titleize
 
 p
-  strong= model_class.human_attribute_name(:user_id) + ':'
-  br
-  = @log.user_id
-p
   strong= model_class.human_attribute_name(:logged_at) + ':'
   br
   = @log.logged_at

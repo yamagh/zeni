@@ -5,6 +5,7 @@ Rails.application.routes.draw do
   resources :logs
   resources :stores
   get 'last_store', to: 'stores#last_store'
+  get 'categories/categories'
   resources :categories do
     resources :sub_categories
   end

@@ -63,6 +63,10 @@ class CategoriesController < ApplicationController
     end
   end
 
+  def categories
+    @categories = Category.where(user_id: current_user.id).order(:order)
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_category

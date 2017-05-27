@@ -3,6 +3,10 @@
 # You can use CoffeeScript in this file: http://coffeescript.org/
   
 $(document).on 'turbolinks:load', ->
+  $('#log_account_id').change ->
+    $.get url: "/categories/categories", data: {}, ->
+      $.get url: "/sub_categories/sub_categories", data: { category_id: $('#category_category_id').has('option:selected').val() }, ->
+        $.get url: "/last_store", data: { sub_category_id: $('#log_sub_category_id').val() }
   $('#category_category_id').change ->
     $.get url: "/sub_categories/sub_categories", data: { category_id: $('#category_category_id').has('option:selected').val() }, ->
       $.get url: "/last_store", data: { sub_category_id: $('#log_sub_category_id').val() }

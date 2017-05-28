@@ -65,6 +65,10 @@ class CategoriesController < ApplicationController
 
   def categories
     @categories = Category.where(user_id: current_user.id).order(:order)
+    @selected = Category
+      .includes(sub_categories: :logs)
+      .where(user_id: current_user.id, logs: {account_id: params[:account_id]})
+      .order('logged_at desc').first[:id]
   end
 
   private

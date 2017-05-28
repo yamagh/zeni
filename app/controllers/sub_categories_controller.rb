@@ -65,6 +65,11 @@ class SubCategoriesController < ApplicationController
 
   def sub_categories
     @sub_categories = SubCategory.where(category_id: params[:category_id]).order(:order)
+    @selected = SubCategory
+      .includes(:category, :logs)
+      .where(logs: {user_id: current_user.id}, categories: {user_id: current_user.id}, category_id: params[:category_id])
+      .order("logged_at desc")
+      .first[:id]
   end
 
   private

@@ -27,4 +27,14 @@ class SubCategoryTest < ActiveSupport::TestCase
       SubCategory.create category_id: @food.id, name: [*1..51].map{"a"}*''
     end
   end
+
+  test "defalt value of is_disabled is false" do
+    d = SubCategory.create category_id: @food.id, name: "Drink"
+    assert_equal( d.is_disabled, false )
+  end
+
+  test "defalt value of order is 0" do
+    d = SubCategory.create category_id: @food.id, name: "Drink"
+    assert_equal( d.order, 0 )
+  end
 end

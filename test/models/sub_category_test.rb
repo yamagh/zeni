@@ -18,13 +18,17 @@ class SubCategoryTest < ActiveSupport::TestCase
     end
   end
 
-  test "should be 50 or less length name" do
+  test "should be 1~50 length name" do
+    assert_no_difference ('SubCategory.count') do
+      SubCategory.create category_id: @food.id, name: ""
+    end
+
     assert_difference ('SubCategory.count') do
       SubCategory.create category_id: @food.id, name: [*1..50].map{"a"}*''
     end
 
     assert_no_difference ('SubCategory.count') do
-      SubCategory.create category_id: @food.id, name: [*1..51].map{"a"}*''
+      SubCategory.create category_id: @food.id, name: [*1..51].map{"b"}*''
     end
   end
 

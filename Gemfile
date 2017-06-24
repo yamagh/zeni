@@ -40,6 +40,7 @@ group :development, :test do
   gem 'byebug', platform: :mri
   gem 'guard-livereload'
   gem 'guard-minitest'
+  gem 'terminal-notifier'
   gem 'terminal-notifier-guard'
 end
 

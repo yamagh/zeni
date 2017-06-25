@@ -71,7 +71,7 @@
           td= log.account.name
           td= log.sub_category.category.name
           td= log.sub_category.name
-          td= log.store.name
+          td= log.store.name unless log.store.nil?
           td= log.item
           td= log.memo
 .text-center= paginate @logs

@@ -48,4 +48,11 @@ class LogsControllerTest < ActionDispatch::IntegrationTest
 
     assert_redirected_to logs_url + '?locale=ja'
   end
+
+  test "should show log index when registed store count is 0" do
+    @taro = users(:taro)
+    login_as(@taro, scope: :user)
+    get logs_url
+    assert_response :success
+  end
 end

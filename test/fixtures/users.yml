@@ -10,5 +10,7 @@ bob:
 
 # column: value
 #
-two: {}
-# column: value
+taro:
+  email: taro@example.com
+  encrypted_password: <%= Devise::Encryptor.digest(User, 'password') %>
+

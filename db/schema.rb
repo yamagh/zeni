@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170501062442) do
+ActiveRecord::Schema.define(version: 20170624144507) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -36,17 +36,17 @@ ActiveRecord::Schema.define(version: 20170501062442) do
   end
 
   create_table "logs", force: :cascade do |t|
-    t.integer  "user_id",                                         null: false
-    t.datetime "logged_at",       default: '2017-04-12 13:35:24', null: false
-    t.decimal  "ammount",         default: "0.0",                 null: false
-    t.boolean  "is_expence",      default: true,                  null: false
-    t.integer  "account_id",                                      null: false
-    t.integer  "sub_category_id",                                 null: false
+    t.integer  "user_id",                                  null: false
+    t.datetime "logged_at",       default: -> { "now()" }, null: false
+    t.decimal  "ammount",         default: "0.0",          null: false
+    t.boolean  "is_expence",      default: true,           null: false
+    t.integer  "account_id",                               null: false
+    t.integer  "sub_category_id",                          null: false
     t.integer  "store_id"
-    t.string   "item",                                            null: false
+    t.string   "item",                                     null: false
     t.string   "memo"
-    t.datetime "created_at",                                      null: false
-    t.datetime "updated_at",                                      null: false
+    t.datetime "created_at",                               null: false
+    t.datetime "updated_at",                               null: false
     t.index ["account_id"], name: "index_logs_on_account_id", using: :btree
     t.index ["store_id"], name: "index_logs_on_store_id", using: :btree
     t.index ["sub_category_id"], name: "index_logs_on_sub_category_id", using: :btree

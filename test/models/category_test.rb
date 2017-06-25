@@ -27,9 +27,21 @@ class CategoryTest < ActiveSupport::TestCase
     end
   end
 
-  test "should have 1 or more length name" do
+  test "should have 1-50 length name" do
     assert_no_difference ('Category.count') do
       Category.create user_id: @bob.id, name: ""
+    end
+
+    assert_difference ('Category.count') do
+      Category.create user_id: @bob.id, name: "a"
+    end
+
+    assert_difference ('Category.count') do
+      Category.create user_id: @bob.id, name: [*1..50].map{"a"}*''
+    end
+
+    assert_no_difference ('Category.count') do
+      Category.create user_id: @bob.id, name: [*1..51].map{"a"}*''
     end
   end
 end

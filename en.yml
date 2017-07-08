@@ -1,0 +1,6 @@
+en:
+  logs:
+    create:
+      notice: Log was successfully created.
+    update:
+      notice: Log was successfully updated.

@@ -23,7 +23,10 @@ class LogsControllerTest < ActionDispatch::IntegrationTest
       post logs_url, params: { log: { account_id: @log.account_id, ammount: @log.ammount, is_expence: @log.is_expence, item: @log.item, logged_at: @log.logged_at, memo: @log.memo, store_id: @log.store_id, sub_category_id: @log.sub_category_id, user_id: @log.user_id } }
     end
 
-    assert_redirected_to log_url(Log.last) + '?locale=ja'
+    url = log_url(Log.last) + '?locale=ja'
+    assert_redirected_to url
+    get url
+    assert_select ".alert-success", /記録は正常に作成されました/
   end
 
   test "should show log" do
@@ -38,7 +41,10 @@ class LogsControllerTest < ActionDispatch::IntegrationTest
 
   test "should update log" do
     patch log_url(@log), params: { log: { account_id: @log.account_id, ammount: @log.ammount, is_expence: @log.is_expence, item: @log.item, logged_at: @log.logged_at, memo: @log.memo, store_id: @log.store_id, sub_category_id: @log.sub_category_id, user_id: @log.user_id } }
-    assert_redirected_to log_url(@log) + '?locale=ja'
+    url = log_url(@log) + '?locale=ja'
+    assert_redirected_to url
+    get url
+    assert_select ".alert-success", /記録は正常に更新されました/
   end
 
   test "should destroy log" do
@@ -46,7 +52,10 @@ class LogsControllerTest < ActionDispatch::IntegrationTest
       delete log_url(@log)
     end
 
-    assert_redirected_to logs_url + '?locale=ja'
+    url = logs_url + '?locale=ja'
+    assert_redirected_to url
+    get url
+    assert_select ".alert-success", /記録は正常に削除されました/
   end
 
   test "should show log index when registed store count is 0" do

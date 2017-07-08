@@ -1,0 +1,7 @@
+en:
+  create:
+    notice: '%{name} was successfully created.'
+  update:
+    notice: '%{name} was successfully updated.'
+  destroy:
+    notice: '%{name} was successfully deleted.'

@@ -23,7 +23,10 @@ class StoresControllerTest < ActionDispatch::IntegrationTest
       post stores_url, params: { store: { address: @store.address, is_disabled: @store.is_disabled, name: @store.name, order: @store.order, tel: @store.tel, user_id: @store.user_id } }
     end
 
-    assert_redirected_to store_url(Store.last) + '?locale=ja'
+    url = store_url(Store.last) + '?locale=ja'
+    assert_redirected_to url
+    get url
+    assert_select ".alert-success", /お店は正常に作成されました。/
   end
 
   test "should show store" do
@@ -38,7 +41,11 @@ class StoresControllerTest < ActionDispatch::IntegrationTest
 
   test "should update store" do
     patch store_url(@store), params: { store: { address: @store.address, is_disabled: @store.is_disabled, name: @store.name, order: @store.order, tel: @store.tel, user_id: @store.user_id } }
-    assert_redirected_to store_url(@store) + '?locale=ja'
+
+    url = store_url(@store) + '?locale=ja'
+    assert_redirected_to url
+    get url
+    assert_select ".alert-success", /お店は正常に更新されました。/
   end
 
   test "should destroy store" do
@@ -46,6 +53,9 @@ class StoresControllerTest < ActionDispatch::IntegrationTest
       delete store_url(@store)
     end
 
-    assert_redirected_to stores_url + '?locale=ja'
+    url = stores_url + '?locale=ja'
+    assert_redirected_to url
+    get url
+    assert_select ".alert-success", /お店は正常に削除されました。/
   end
 end

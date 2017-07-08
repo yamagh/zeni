@@ -30,7 +30,7 @@ class StoresController < ApplicationController
 
     respond_to do |format|
       if @store.save
-        format.html { redirect_to @store, notice: 'Store was successfully created.' }
+        format.html { redirect_to @store, notice: t('create.notice', name: t('activerecord.models.store')) }
         format.json { render :show, status: :created, location: @store }
       else
         format.html { render :new }
@@ -44,7 +44,7 @@ class StoresController < ApplicationController
   def update
     respond_to do |format|
       if @store.update(store_params)
-        format.html { redirect_to @store, notice: 'Store was successfully updated.' }
+        format.html { redirect_to @store, notice: t('update.notice', name: t('activerecord.models.store')) }
         format.json { render :show, status: :ok, location: @store }
       else
         format.html { render :edit }
@@ -58,7 +58,7 @@ class StoresController < ApplicationController
   def destroy
     @store.destroy
     respond_to do |format|
-      format.html { redirect_to stores_url, notice: 'Store was successfully destroyed.' }
+      format.html { redirect_to stores_url, notice: t('destroy.notice', name: t('activerecord.models.store')) }
       format.json { head :no_content }
     end
   end

@@ -23,7 +23,10 @@ class AccountsControllerTest < ActionDispatch::IntegrationTest
       post accounts_url, params: { account: { is_disabled: @account.is_disabled, name: @account.name, order: @account.order, user_id: @account.user_id } }
     end
 
-    assert_redirected_to account_url(Account.last) + '?locale=ja'
+    url = account_url(Account.last) + '?locale=ja'
+    assert_redirected_to url
+    get url
+    assert_select ".alert-success", /口座は正常に作成されました。/
   end
 
   test "should show account" do
@@ -38,7 +41,10 @@ class AccountsControllerTest < ActionDispatch::IntegrationTest
 
   test "should update account" do
     patch account_url(@account), params: { account: { is_disabled: @account.is_disabled, name: @account.name, order: @account.order, user_id: @account.user_id } }
-    assert_redirected_to account_url(@account) + '?locale=ja'
+    url = account_url(@account) + '?locale=ja'
+    assert_redirected_to url
+    get url
+    assert_select ".alert-success", /口座は正常に更新されました。/
   end
 
   test "should destroy account" do
@@ -46,6 +52,9 @@ class AccountsControllerTest < ActionDispatch::IntegrationTest
       delete account_url(@account)
     end
 
-    assert_redirected_to accounts_url + '?locale=ja'
+    url = accounts_url + '?locale=ja'
+    assert_redirected_to url
+    get url
+    assert_select ".alert-success", /口座は正常に削除されました。/
   end
 end

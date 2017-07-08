@@ -1,5 +1,5 @@
 = bootstrap_form_for @log do |f|
-  = f.datetime_select :logged_at
+  = f.datetime_select :logged_at, start_year: 2000, use_month_numbers: true
   = f.text_field :ammount
   = f.check_box :is_expence
   = f.collection_select :account_id, Account.where(user_id: current_user.id).order(:order), :id, :name, include_blank: true

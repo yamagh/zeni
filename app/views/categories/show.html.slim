@@ -20,7 +20,7 @@
             td= link_to sub_category.name, edit_category_sub_category_path(@category, sub_category)
             td= sub_category.is_disabled
 .actions  
-  = link_to :new, new_category_sub_category_path(@category), class: 'btn btn-block btn-primary'
+  = link_to t('helpers.links.new'), new_category_sub_category_path(@category), class: 'btn btn-block btn-primary'
 .pull-left
   = link_to t('.back', :default => t("helpers.links.back")), categories_path, :class => 'btn btn-default'
 .pull-right

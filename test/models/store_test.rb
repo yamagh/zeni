@@ -50,4 +50,13 @@ class StoreTest < ActiveSupport::TestCase
     assert_equal( 0, s.lat )
     assert_equal( 0, s.lng )
   end
+
+  test "name_with_order" do
+    assert_equal "1: Amazon", stores(:amazon).name_with_order
+  end
+
+  test "should use order number in name_with_order" do
+    foo = Store.create user_id: @bob.id, name: "foo", order: 123
+    assert_equal "123: foo", foo.name_with_order
+  end
 end

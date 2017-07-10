@@ -44,4 +44,13 @@ class AccountTest < ActiveSupport::TestCase
       Account.create user_id: @bob.id, name: [*1..51].map{"a"}*''
     end
   end
+
+  test "name_with_order" do
+    assert_equal "1: 財布", accounts(:saifu).name_with_order
+  end
+
+  test "should use order number in name_with_order" do
+    foo = Account.create user_id: @bob.id, name: "foo", order: 123
+    assert_equal "123: foo", foo.name_with_order
+  end
 end

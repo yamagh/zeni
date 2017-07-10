@@ -64,4 +64,36 @@ class LogsControllerTest < ActionDispatch::IntegrationTest
     get logs_url
     assert_response :success
   end
+
+  test "should use name_with_order for account" do
+    get new_log_url
+    id    = accounts(:saifu).id.to_s
+    order = accounts(:saifu).order.to_s
+    name  = accounts(:saifu).name.to_s
+    assert_select "#log_account_id>option[value=?]", id, "#{order}: #{name}"
+  end
+
+  test "should use name_with_order for category" do
+    get new_log_url
+    id    = categories(:food).id.to_s
+    order = categories(:food).order.to_s
+    name  = categories(:food).name.to_s
+    assert_select "#category_category_id>option[value=?]", id, "#{order}: #{name}"
+  end
+
+  test "should use name_with_order for sub_category" do
+    get new_log_url
+    id    = sub_categories(:breakfast).id.to_s
+    order = sub_categories(:breakfast).order.to_s
+    name  = sub_categories(:breakfast).name.to_s
+    assert_select "#log_sub_category_id>option[value=?]", id, "#{order}: #{name}"
+  end
+
+  test "should use name_with_order for store" do
+    get new_log_url
+    id    = stores(:amazon).id.to_s
+    order = stores(:amazon).order.to_s
+    name  = stores(:amazon).name.to_s
+    assert_select "#log_store_id>option[value=?]", id, "#{order}: #{name}"
+  end
 end

@@ -64,11 +64,13 @@ class CategoriesController < ApplicationController
   end
 
   def categories
-    @categories = Category.where(user_id: current_user.id).order(:order)
+    @categories = Category.where(user_id: current_user.id).order(:order).map{|e|[e.name_with_order, e.id]}
     @selected = Category
       .includes(sub_categories: :logs)
       .where(user_id: current_user.id, logs: {account_id: params[:account_id]})
-      .order('logged_at desc').first[:id]
+      .order('logged_at desc')
+      .first
+      .id
   end
 
   private

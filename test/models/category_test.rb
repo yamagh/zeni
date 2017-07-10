@@ -3,6 +3,7 @@ require 'test_helper'
 class CategoryTest < ActiveSupport::TestCase
   def setup
     @bob = users(:bob)
+    @food = categories(:food)
   end
 
   test "can create new category" do
@@ -43,5 +44,14 @@ class CategoryTest < ActiveSupport::TestCase
     assert_no_difference ('Category.count') do
       Category.create user_id: @bob.id, name: [*1..51].map{"a"}*''
     end
+  end
+
+  test "name_with_order" do
+    assert_equal "1: Food", @food.name_with_order
+  end
+
+  test "should use order number in name_with_order" do
+    foo = Category.create user_id: @bob.id, name: "foo", order: 123
+    assert_equal "123: foo", foo.name_with_order
   end
 end

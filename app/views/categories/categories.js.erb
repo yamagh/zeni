@@ -1,2 +1,2 @@
-$('#category_category_id').html('<%= j(options_for_select(@categories.pluck(:name, :id), selected: @selected)) %>')
+$('#category_category_id').html('<%= j(options_for_select(@categories, selected: @selected)) %>')
 

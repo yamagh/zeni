@@ -56,4 +56,8 @@ class SubCategoriesControllerTest < ActionDispatch::IntegrationTest
     get url
     assert_select ".alert-success", /サブカテゴリは正常に削除されました。/
   end
+
+  #test "should get sub categories json" do
+  #  get sub_categories_sub_categories_url, params: {format: :js, category_id: @category.id}
+  #end
 end

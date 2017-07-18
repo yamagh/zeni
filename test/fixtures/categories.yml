@@ -6,6 +6,12 @@ food:
   is_disabled: false
   order: 1
 
+car:
+  user: bob 
+  name: Car
+  is_disabled: false
+  order: 2
+
 house:
   user: taro
   name: House

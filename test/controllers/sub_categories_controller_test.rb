@@ -57,6 +57,24 @@ class SubCategoriesControllerTest < ActionDispatch::IntegrationTest
     assert_select ".alert-success", /サブカテゴリは正常に削除されました。/
   end
 
+  test "should get sub_categories select_box" do
+    get sub_categories_sub_categories_url, params: {category_id: categories(:food).id, format: :js}, xhr: true
+    assert_response :success
+    assert_select "*", /\$\('#log_sub_category_id'\).html\('1: Breakfast'\)/
+  end
+
+  test "should get current_user's sub_categories select_box" do
+    get sub_categories_sub_categories_url, params: {category_id: categories(:house).id, format: :js}, xhr: true
+    assert_response :success
+    assert_select "*", /\$\('#log_sub_category_id'\).html\(''\)/
+  end
+
+  test "should get sub_categories select_box when sub_categories is empty" do
+    get sub_categories_sub_categories_url, params: {category_id: categories(:car).id, format: :js}, xhr: true
+    assert_response :success
+    assert_select "*", /\$\('#log_sub_category_id'\).html\(''\)/
+  end
+
   #test "should get sub categories json" do
   #  get sub_categories_sub_categories_url, params: {format: :js, category_id: @category.id}
   #end

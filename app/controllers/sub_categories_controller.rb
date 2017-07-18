@@ -64,13 +64,17 @@ class SubCategoriesController < ApplicationController
   end
 
   def sub_categories
-    @sub_categories = SubCategory.where(category_id: params[:category_id]).order(:order).map{|e|[e.name_with_order, e.id]}
-    @selected = SubCategory
-      .includes(:category, :logs)
-      .where(logs: {user_id: current_user.id}, categories: {user_id: current_user.id}, category_id: params[:category_id])
-      .order("logged_at desc")
-      .first
-      .id
+    if Category.where(id: params[:category_id], user_id: current_user.id).empty?
+      @sub_categories = []
+    else
+      @sub_categories = SubCategory.where(category_id: params[:category_id]).order(:order).map{|e|[e.name_with_order, e.id]}
+      latest_log = SubCategory
+        .includes(:category, :logs)
+        .where(logs: {user_id: current_user.id}, categories: {user_id: current_user.id}, category_id: params[:category_id])
+        .order("logged_at desc")
+        .first
+      @selected = latest_log.id unless latest_log.nil?
+    end
   end
 
   private

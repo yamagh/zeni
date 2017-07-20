@@ -17,15 +17,19 @@ p
 p
   strong= model_class.human_attribute_name(:account_id) + ':'
   br
-  = @log.account_id
+  = @account_name
+p
+  strong= model_class.human_attribute_name(:category_id) + ':'
+  br
+  = @category_name
 p
   strong= model_class.human_attribute_name(:sub_category_id) + ':'
   br
-  = @log.sub_category_id
+  = @sub_category_name
 p
   strong= model_class.human_attribute_name(:store_id) + ':'
   br
-  = @log.store_id
+  = @store_name
 p
   strong= model_class.human_attribute_name(:item) + ':'
   br

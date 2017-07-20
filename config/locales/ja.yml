@@ -14,6 +14,8 @@ ja:
         is_expence: 支出
         account: 口座
         account_id: 口座
+        category: カテゴリ
+        category_id: カテゴリ
         sub_category: サブカテゴリ
         sub_category_id: サブカテゴリ
         store: お店

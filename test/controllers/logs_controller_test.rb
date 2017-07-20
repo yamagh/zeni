@@ -34,6 +34,14 @@ class LogsControllerTest < ActionDispatch::IntegrationTest
     assert_response :success
   end
 
+  test "should show names of account sub/category, store" do
+    get log_url(@log)  
+    assert_select "*", Regexp.new(accounts(:saifu).name)
+    assert_select "*", Regexp.new(categories(:food).name)
+    assert_select "*", Regexp.new(sub_categories(:breakfast).name)
+    assert_select "*", Regexp.new(stores(:amazon).name)
+  end
+
   test "should get edit" do
     get edit_log_url(@log)
     assert_response :success

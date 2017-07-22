@@ -24,7 +24,13 @@ class LogsController < ApplicationController
 
   # GET /logs/new
   def new
-    @log = Log.new(logged_at: DateTime.now)
+    if params.include?(:log_id)
+      log = Log.find(params[:log_id])
+      @log = Log.new(logged_at: log.logged_at, ammount: log.ammount, is_expence: log.is_expence, account: log.account, sub_category: log.sub_category, store: log.store, item: log.item, memo: log.memo)
+      @category_selected = SubCategory.find(log.sub_category.id).category_id
+    else
+      @log = Log.new(logged_at: DateTime.now)
+    end
     @categories = Category.where(user_id: current_user.id).order(:order)
   end
 

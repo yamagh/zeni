@@ -104,4 +104,35 @@ class LogsControllerTest < ActionDispatch::IntegrationTest
     name  = stores(:amazon).name.to_s
     assert_select "#log_store_id>option[value=?]", id, "#{order}: #{name}"
   end
+
+  test "should show buttons in log_url" do
+    get log_url(@log)
+    assert_response :success
+    assert_select "a[href='" + logs_path({locale: :ja}) + "']"
+    assert_select "a[href='" + edit_log_path(@log, {locale: :ja}) + "']"
+    assert_select "a[href='" + new_log_path({locale: :ja, log_id: @log.id}) + "']"
+    assert_select "a[href='" + log_path(@log, {locale: :ja}) + "']"
+  end
+
+  test "should can copy log" do
+    get new_log_url, params: {log_id: @log.id}
+    assert_response :success
+    assert_select "#log_logged_at_1i>option[selected='selected']", @log.logged_at.year.to_s
+    assert_select "#log_logged_at_2i>option[selected='selected']", @log.logged_at.month.to_s
+    assert_select "#log_logged_at_3i>option[selected='selected']", @log.logged_at.day.to_s
+    assert_select "#log_logged_at_4i>option[selected='selected']", "%02d" % @log.logged_at.hour.to_s
+    assert_select "#log_logged_at_5i>option[selected='selected']", "%02d" % @log.logged_at.min.to_s
+    assert_select "#log_ammount[value=?]",                          @log.ammount.to_s
+    if @log.is_expence
+      assert_select "input#log_is_expence[checked='checked']"
+    else
+      assert_select "input#log_is_expence:not([checked])"
+    end
+    assert_select "#log_account_id>option[selected]",       Account.find(@log.account_id).name_with_order
+    assert_select "#category_category_id>option[selected]", Category.find(sub_categories(:breakfast).category_id).name_with_order
+    assert_select "#log_sub_category_id>option[selected]",  SubCategory.find(@log.sub_category_id).name_with_order
+    assert_select "#log_store_id>option[selected]",         Store.find(@log.store_id).name_with_order
+    assert_select "#log_item[value=?]",    @log.item
+    assert_select "#log_memo",             @log.memo
+  end
 end

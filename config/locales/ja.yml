@@ -267,6 +267,7 @@ ja:
       destroy: 削除
       new: 追加
       edit: 編集
+      copy: コピー
     titles:
       edit: "%{model} 編集"
       save: "%{model} 保存"

@@ -5,7 +5,7 @@
   = f.collection_select :account_id, Account.where(user_id: current_user.id).order(:order), :id, :name_with_order, include_blank: true
   .form-group
     = label      :category, :category_id, class: 'control-label'
-    = collection_select :category, :category_id, Category.where(user_id: current_user.id).order(:order), :id, :name_with_order, {include_blank: true}, {class: 'form-control'}
+    = collection_select :category, :category_id, Category.where(user_id: current_user.id).order(:order), :id, :name_with_order, {include_blank: true, selected: @category_selected}, {class: 'form-control'}
   = f.collection_select :sub_category_id, SubCategory.joins(:category).where(categories: {user_id: current_user.id}), :id, :name_with_order, include_blank: true
   = f.collection_select :store_id, Store.where(user_id: current_user.id).order(:order), :id, :name_with_order, include_blank: true
   = f.text_field :item

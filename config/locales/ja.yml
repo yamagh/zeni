@@ -186,6 +186,20 @@ ja:
       create: 登録する
       submit: 保存する
       update: 更新する
+    actions: "Actions"
+    links:
+      back: 戻る
+      cancel: キャンセル
+      confirm: 続行しますか?
+      destroy: 削除
+      new: 追加
+      edit: 編集
+      copy: コピー
+    titles:
+      edit: "%{model} 編集"
+      save: "%{model} 保存"
+      new: "%{model} 追加"
+      delete: "%{model} 削除"
   number:
     currency:
       format:
@@ -258,22 +272,14 @@ ja:
       root: "Index"
     pages:
       pages: "Pages"
-  helpers:
-    actions: "Actions"
-    links:
-      back: 戻る
-      cancel: キャンセル
-      confirm: 続行しますか?
-      destroy: 削除
-      new: 追加
-      edit: 編集
-      copy: コピー
-    titles:
-      edit: "%{model} 編集"
-      save: "%{model} 保存"
-      new: "%{model} 追加"
-      delete: "%{model} 削除"
   dashboards: ダッシュボード
   this_month: 今月
   previous_month: 前月
   total: トータル
+  views:
+    pagination:
+      first: "« 先頭"
+      last: "最後 »"
+      next: "次へ »"
+      previous: "« 前へ"
+      truncate: "..."

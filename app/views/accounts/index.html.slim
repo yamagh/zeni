@@ -9,9 +9,13 @@
 table.table.table-striped
   thead
     tr
+      th= model_class.human_attribute_name(:order)
       th= model_class.human_attribute_name(:name)
+      th= model_class.human_attribute_name(:is_disabled)
   tbody
     - @accounts.each do |account|
       tr
-        td= link_to account.name, account_path(account)
+        td= link_to account.order,       account_path(account)
+        td= link_to account.name,        account_path(account)
+        td= link_to account.is_disabled.to_s, account_path(account)
 

@@ -75,7 +75,20 @@ class SubCategoriesControllerTest < ActionDispatch::IntegrationTest
     assert_select "*", /\$\('#log_sub_category_id'\).html\(''\)/
   end
 
-  #test "should get sub categories json" do
-  #  get sub_categories_sub_categories_url, params: {format: :js, category_id: @category.id}
-  #end
+  test "should can control only current_user's data" do
+    get edit_category_sub_category_url(categories(:house), sub_categories(:rent))
+    assert_response :missing
+
+    #get category_sub_category_url(sub_categories(:rent))
+    #assert_response :missing
+
+    patch category_sub_category_url(categories(:house), sub_categories(:rent)), params: { sub_category: { is_disabled: false, name: "a", order: 1, user_id: users(:taro).id } }
+    assert_response :missing
+
+    put category_sub_category_url(categories(:house), sub_categories(:rent)), params: { sub_category: { is_disabled: false, name: "a", order: 1, user_id: users(:taro).id } }
+    assert_response :missing
+
+    delete category_sub_category_url(categories(:house), sub_categories(:rent))
+    assert_response :missing
+  end
 end

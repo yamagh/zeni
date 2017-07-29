@@ -82,12 +82,13 @@ class LogsController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_log
-      @log = Log.find(params[:id])
+      @log               = Log.where(user_id: current_user.id, id: params[:id]).first
+      routing_error if @log.nil?
       @account_name      = Account.find(@log.account_id).name
       sub_category       = SubCategory.find(@log.sub_category_id)
       @sub_category_name = sub_category.name
       @category_name     = Category.find(sub_category.category_id).name
-      @store_name        = Store.find(@log.store_id).name
+      @store_name        = Store.find(@log.store_id).name unless @log.store_id.nil?
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

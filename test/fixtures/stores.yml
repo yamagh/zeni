@@ -8,10 +8,10 @@ amazon:
   is_disabled: false
   order: 1
 
-#two:
-#  user: two
-#  name: MyString
-#  tel: 1
-#  address: MyString
-#  is_disabled: false
-#  order: 1
+apple:
+  user: taro
+  name: AppleStore
+  tel: 1
+  address: apple.com/jp
+  is_disabled: false
+  order: 1

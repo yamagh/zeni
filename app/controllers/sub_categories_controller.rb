@@ -80,8 +80,10 @@ class SubCategoriesController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_sub_category
-      @category     = Category.find(params[:category_id])
-      @sub_category = SubCategory.find(params[:id])
+      @category     = Category.where(user_id: current_user.id, id: params[:category_id]).first
+      routing_error if @category.nil?
+      @sub_category = SubCategory.where(category_id: @category.id, id: params[:id]).first
+      routing_error if @sub_category.nil?
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

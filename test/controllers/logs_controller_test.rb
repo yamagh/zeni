@@ -135,4 +135,21 @@ class LogsControllerTest < ActionDispatch::IntegrationTest
     assert_select "#log_item[value=?]",    @log.item
     assert_select "#log_memo",             @log.memo
   end
+
+  test "should can control current_user's log" do
+    get log_url(logs(:two))
+    assert_response :missing
+
+    get edit_log_url(logs(:two))
+    assert_response :missing
+
+    patch log_url(logs(:two))
+    assert_response :missing
+
+    put log_url(logs(:two))
+    assert_response :missing
+
+    delete log_url(logs(:two))
+    assert_response :missing
+  end
 end

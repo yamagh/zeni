@@ -57,4 +57,21 @@ class CategoriesControllerTest < ActionDispatch::IntegrationTest
     get url
     assert_select ".alert-success", /カテゴリは正常に削除されました/
   end
+
+  test "should can control only current_user's category" do
+    get edit_category_url(categories(:house))
+    assert_response :missing
+
+    get category_url(categories(:house))
+    assert_response :missing
+
+    patch category_url(categories(:house)), params: { category: { is_disabled: false, name: "a", order: 1, user_id: users(:taro).id } }
+    assert_response :missing
+
+    put category_url(categories(:house)), params: { category: { is_disabled: false, name: "a", order: 1, user_id: users(:taro).id } }
+    assert_response :missing
+
+    delete category_url(categories(:house))
+    assert_response :missing
+  end
 end

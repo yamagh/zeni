@@ -15,4 +15,7 @@ Rails.application.routes.draw do
   devise_for :users, controllers: {
     registrations: 'users/registrations'
   }
+
+  get  '*not_found' => 'application#routing_error'
+  post '*not_found' => 'application#routing_error'
 end

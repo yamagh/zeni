@@ -58,4 +58,21 @@ class StoresControllerTest < ActionDispatch::IntegrationTest
     get url
     assert_select ".alert-success", /お店は正常に削除されました。/
   end
+
+  test "should can control only current_user's store" do
+    get edit_store_url(stores(:apple))
+    assert_response :missing
+
+    get store_url(stores(:apple))
+    assert_response :missing
+
+    patch store_url(stores(:apple)), params: { store: { is_disabled: false, name: "a", order: 1, user_id: users(:taro).id } }
+    assert_response :missing
+
+    put store_url(stores(:apple)), params: { store: { is_disabled: false, name: "a", order: 1, user_id: users(:taro).id } }
+    assert_response :missing
+
+    delete store_url(stores(:apple))
+    assert_response :missing
+  end
 end

@@ -51,4 +51,8 @@ class SubCategoryTest < ActiveSupport::TestCase
     foo = SubCategory.create category_id: @food.id, name: "foo", order: 123
     assert_equal "123: foo", foo.name_with_order
   end
+
+  test "name_with_long_order" do
+    assert_equal "11: Breakfast", @breakfast.name_with_long_order
+  end
 end

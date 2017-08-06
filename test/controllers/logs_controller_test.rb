@@ -89,12 +89,13 @@ class LogsControllerTest < ActionDispatch::IntegrationTest
     assert_select "#category_category_id>option[value=?]", id, "#{order}: #{name}"
   end
 
-  test "should use name_with_order for sub_category" do
+  test "should use name_with_long_order for sub_category" do
     get new_log_url
     id    = sub_categories(:breakfast).id.to_s
     order = sub_categories(:breakfast).order.to_s
     name  = sub_categories(:breakfast).name.to_s
-    assert_select "#log_sub_category_id>option[value=?]", id, "#{order}: #{name}"
+    cat_order = categories(:food).order.to_s
+    assert_select "#log_sub_category_id>option[value=?]", id, "#{cat_order}#{order}: #{name}"
   end
 
   test "should use name_with_order for store" do
@@ -130,7 +131,7 @@ class LogsControllerTest < ActionDispatch::IntegrationTest
     end
     assert_select "#log_account_id>option[selected]",       Account.find(@log.account_id).name_with_order
     assert_select "#category_category_id>option[selected]", Category.find(sub_categories(:breakfast).category_id).name_with_order
-    assert_select "#log_sub_category_id>option[selected]",  SubCategory.find(@log.sub_category_id).name_with_order
+    assert_select "#log_sub_category_id>option[selected]",  SubCategory.find(@log.sub_category_id).name_with_long_order
     assert_select "#log_store_id>option[selected]",         Store.find(@log.store_id).name_with_order
     assert_select "#log_item[value=?]",    @log.item
     assert_select "#log_memo",             @log.memo

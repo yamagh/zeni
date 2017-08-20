@@ -13,7 +13,7 @@ class LogsController < ApplicationController
               .per(50)
     @accounts       = Account.where(user_id: current_user.id).order(:order)
     @categories     = Category.where(user_id: current_user.id).order(:order)
-    @sub_categories = SubCategory.includes(:category).where(categories: {user_id: current_user.id}).order(:order)
+    @sub_categories = SubCategory.includes(:category).where(categories: {user_id: current_user.id}).order("categories.order", :order)
     @stores         = Store.where(user_id: current_user.id).order(:order)
   end
 

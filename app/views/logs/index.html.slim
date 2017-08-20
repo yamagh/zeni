@@ -20,25 +20,25 @@
     = f.label         :account_id,      {class: 'control-label'}
     = f.select        :account_id_eq, \
                       content_tag(:option,'',value: "") + \
-                      options_from_collection_for_select(@accounts, :id, :name, @q.account_id_eq), \
+                      options_from_collection_for_select(@accounts, :id, :name_with_order, @q.account_id_eq), \
                       {}, {class: 'form-control'}
   .form-group
     = f.label         :category_id, {class: 'control-label'}
     = f.select        :sub_category_category_id_eq, \
                       content_tag(:option,'',value: "") + \
-                      options_from_collection_for_select(@categories, :id, :name, @q.sub_category_category_id_eq), \
+                      options_from_collection_for_select(@categories, :id, :name_with_order, @q.sub_category_category_id_eq), \
                       {}, {class: 'form-control'}
   .form-group
     = f.label         :sub_category_id,      {class: 'control-label'}
     = f.select        :sub_category_id_eq, \
                       content_tag(:option,'',value: "") + \
-                      options_from_collection_for_select(@sub_categories, :id, :name, @q.sub_category_id_eq), \
+                      options_from_collection_for_select(@sub_categories, :id, :name_with_long_order, @q.sub_category_id_eq), \
                       {}, {class: 'form-control'}
   .form-group
     = f.label         :store_id,      {class: 'control-label'}
     = f.select        :store_id_eq, \
                       content_tag(:option,'',value: "") + \
-                      options_from_collection_for_select(@stores, :id, :name, @q.store_id_eq), \
+                      options_from_collection_for_select(@stores, :id, :name_with_order, @q.store_id_eq), \
                       {}, {class: 'form-control'}
   .form-group
     = f.label         :item_cont,      {class: 'control-label'}

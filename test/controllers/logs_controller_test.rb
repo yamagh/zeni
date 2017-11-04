@@ -36,7 +36,7 @@ class LogsControllerTest < ActionDispatch::IntegrationTest
 
   test "should show names of account sub/category, store" do
     get log_url(@log)  
-    assert_select "*", Regexp.new(accounts(:saifu).name)
+    assert_select "*", Regexp.new(accounts(:wallet).name)
     assert_select "*", Regexp.new(categories(:food).name)
     assert_select "*", Regexp.new(sub_categories(:breakfast).name)
     assert_select "*", Regexp.new(stores(:amazon).name)
@@ -75,9 +75,9 @@ class LogsControllerTest < ActionDispatch::IntegrationTest
 
   test "should use name_with_order for account" do
     get new_log_url
-    id    = accounts(:saifu).id.to_s
-    order = accounts(:saifu).order.to_s
-    name  = accounts(:saifu).name.to_s
+    id    = accounts(:wallet).id.to_s
+    order = accounts(:wallet).order.to_s
+    name  = accounts(:wallet).name.to_s
     assert_select "#log_account_id>option[value=?]", id, "#{order}: #{name}"
   end
 

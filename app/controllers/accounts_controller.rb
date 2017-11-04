@@ -66,11 +66,17 @@ class AccountsController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_account
+      #return head :bad_request unless valid_request?
+      return render template: 'errors/400.html', status: :bad_request unless valid_request?
       @account = Account.find(params[:id])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def account_params
       params.require(:account).permit(:user_id, :name, :is_disabled, :order)
+    end
+
+    def valid_request?
+      current_user.id == Account.find(params[:id]).user_id
     end
 end

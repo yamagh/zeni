@@ -6,6 +6,7 @@ class AccountsControllerTest < ActionDispatch::IntegrationTest
     @bob = users( :bob )
     login_as(@bob, :scope => :user)
     @wallet = accounts(:wallet)
+    @pig    = accounts(:pig)
   end
 
   test "should get index" do
@@ -34,9 +35,19 @@ class AccountsControllerTest < ActionDispatch::IntegrationTest
     assert_response :success
   end
 
+  test "should NOT show account" do
+    get account_url(@pig)
+    assert_response :bad_request
+  end
+
   test "should get edit" do
     get edit_account_url(@wallet)
     assert_response :success
+  end
+
+  test "should Not get edit" do
+    get edit_account_url(@pig)
+    assert_response :bad_request
   end
 
   test "should update account" do
@@ -45,6 +56,11 @@ class AccountsControllerTest < ActionDispatch::IntegrationTest
     assert_redirected_to url
     get url
     assert_select ".alert-success", /口座は正常に更新されました。/
+  end
+
+  test "should Not update account" do
+    patch account_url(@pig), params: { account: { is_disabled: @pig.is_disabled, name: @pig.name, order: @pig.order, user_id: @pig.user_id } }
+    assert_response :bad_request
   end
 
   test "should destroy account" do
@@ -56,5 +72,12 @@ class AccountsControllerTest < ActionDispatch::IntegrationTest
     assert_redirected_to url
     get url
     assert_select ".alert-success", /口座は正常に削除されました。/
+  end
+
+  test "should Not destroy account" do
+    assert_no_difference 'Account.count' do
+      delete account_url(@pig)
+      assert_response :bad_request
+    end
   end
 end

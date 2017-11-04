@@ -4,7 +4,7 @@ class LogTest < ActiveSupport::TestCase
   def setup
     @bob = users(:bob)
     @coffee = Log.create user_id: @bob.id, 
-                         account_id: accounts(:saifu).id, 
+                         account_id: accounts(:wallet).id, 
                          sub_category_id: sub_categories(:breakfast).id,
                          item: "Coffee"
   end
@@ -12,7 +12,7 @@ class LogTest < ActiveSupport::TestCase
   test "can create" do
     assert_difference ('Log.count') do
       Log.create user_id: @bob.id, 
-                 account_id: accounts(:saifu).id, 
+                 account_id: accounts(:wallet).id, 
                  sub_category_id: sub_categories(:breakfast).id,
                  item: "Coffee"
     end

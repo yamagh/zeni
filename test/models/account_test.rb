@@ -46,7 +46,7 @@ class AccountTest < ActiveSupport::TestCase
   end
 
   test "name_with_order" do
-    assert_equal "1: 財布", accounts(:saifu).name_with_order
+    assert_equal "1: Wallet of bob", accounts(:wallet).name_with_order
   end
 
   test "should use order number in name_with_order" do

@@ -2,12 +2,12 @@
 
 wallet:
   user: bob
-  name: 財布
+  name: Wallet of bob
   is_disabled: false
   order: 1
 
 pig:
   user: taro
-  name: Piggy bank
+  name: Piggy bank of taro
   is_disabled: false
   order: 1

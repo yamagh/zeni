@@ -3,9 +3,9 @@ require 'test_helper'
 class AccountsControllerTest < ActionDispatch::IntegrationTest
   setup do
     Warden.test_mode!
-    @user = users( :bob )
-    login_as(@user, :scope => :user)
-    @account = accounts(:saifu)
+    @bob = users( :bob )
+    login_as(@bob, :scope => :user)
+    @wallet = accounts(:wallet)
   end
 
   test "should get index" do
@@ -20,7 +20,7 @@ class AccountsControllerTest < ActionDispatch::IntegrationTest
 
   test "should create account" do
     assert_difference('Account.count') do
-      post accounts_url, params: { account: { is_disabled: @account.is_disabled, name: @account.name, order: @account.order, user_id: @account.user_id } }
+      post accounts_url, params: { account: { is_disabled: @wallet.is_disabled, name: @wallet.name, order: @wallet.order, user_id: @wallet.user_id } }
     end
 
     url = account_url(Account.last) + '?locale=ja'
@@ -30,18 +30,18 @@ class AccountsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should show account" do
-    get account_url(@account)
+    get account_url(@wallet)
     assert_response :success
   end
 
   test "should get edit" do
-    get edit_account_url(@account)
+    get edit_account_url(@wallet)
     assert_response :success
   end
 
   test "should update account" do
-    patch account_url(@account), params: { account: { is_disabled: @account.is_disabled, name: @account.name, order: @account.order, user_id: @account.user_id } }
-    url = account_url(@account) + '?locale=ja'
+    patch account_url(@wallet), params: { account: { is_disabled: @wallet.is_disabled, name: @wallet.name, order: @wallet.order, user_id: @wallet.user_id } }
+    url = account_url(@wallet) + '?locale=ja'
     assert_redirected_to url
     get url
     assert_select ".alert-success", /口座は正常に更新されました。/
@@ -49,7 +49,7 @@ class AccountsControllerTest < ActionDispatch::IntegrationTest
 
   test "should destroy account" do
     assert_difference('Account.count', -1) do
-      delete account_url(@account)
+      delete account_url(@wallet)
     end
 
     url = accounts_url + '?locale=ja'

@@ -1,6 +1,6 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
-saifu:
+wallet:
   user: bob
   name: 財布
   is_disabled: false

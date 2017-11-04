@@ -76,6 +76,7 @@ class CategoriesController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_category
+      return render template: 'errors/400.html.slim', status: :bad_request unless valid_request?
       @category = Category.where(user_id: current_user.id, id: params[:id]).first
       routing_error if @category.nil?
     end
@@ -83,5 +84,9 @@ class CategoriesController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def category_params
       params.require(:category).permit(:user_id, :name, :is_disabled, :order)
+    end
+
+    def valid_request?
+      current_user.id == Category.find(params[:id]).user_id
     end
 end

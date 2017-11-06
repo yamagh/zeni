@@ -82,8 +82,8 @@ class LogsController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_log
-      @log               = Log.where(user_id: current_user.id, id: params[:id]).first
-      routing_error if @log.nil?
+      return render template: 'errors/400.html.slim', status: :bad_request unless valid_request?
+      @log               = Log.find(params[:id])
       @account_name      = Account.find(@log.account_id).name
       sub_category       = SubCategory.find(@log.sub_category_id)
       @sub_category_name = sub_category.name
@@ -94,5 +94,9 @@ class LogsController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def log_params
       params.require(:log).permit(:user_id, :logged_at, :ammount, :is_expence, :account_id, :sub_category_id, :store_id, :item, :memo)
+    end
+
+    def valid_request?
+      current_user.id == Log.find(params[:id]).user_id
     end
 end

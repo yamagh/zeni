@@ -139,18 +139,18 @@ class LogsControllerTest < ActionDispatch::IntegrationTest
 
   test "should can control current_user's log" do
     get log_url(logs(:two))
-    assert_response :missing
+    assert_response :bad_request
 
     get edit_log_url(logs(:two))
-    assert_response :missing
+    assert_response :bad_request
 
     patch log_url(logs(:two))
-    assert_response :missing
+    assert_response :bad_request
 
     put log_url(logs(:two))
-    assert_response :missing
+    assert_response :bad_request
 
     delete log_url(logs(:two))
-    assert_response :missing
+    assert_response :bad_request
   end
 end

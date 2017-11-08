@@ -123,7 +123,7 @@ class LogsControllerTest < ActionDispatch::IntegrationTest
     assert_select "#log_logged_at_3i>option[selected='selected']", @log.logged_at.day.to_s
     assert_select "#log_logged_at_4i>option[selected='selected']", "%02d" % @log.logged_at.hour.to_s
     assert_select "#log_logged_at_5i>option[selected='selected']", "%02d" % @log.logged_at.min.to_s
-    assert_select "#log_ammount[value=?]",                          @log.ammount.to_s
+    assert_select "#log_ammount[value=?]",                         @log.ammount.to_i.to_s
     if @log.is_expence
       assert_select "input#log_is_expence[checked='checked']"
     else
@@ -152,5 +152,16 @@ class LogsControllerTest < ActionDispatch::IntegrationTest
 
     delete log_url(logs(:two))
     assert_response :bad_request
+  end
+
+  test "amount number format" do
+    get logs_url
+    assert_select "td:eq(2)", /^9,999$/
+
+    get log_url(@log)
+    assert_select "p:eq(2)", /^金額:9,999円$/
+
+    get edit_log_url
+    assert_select "#log_ammount[value='9999']"
   end
 end

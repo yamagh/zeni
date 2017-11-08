@@ -1,3 +1,4 @@
+- @log.ammount = number_to_currency(@log.ammount, unit: '', delimiter: '')
 = bootstrap_form_for @log do |f|
   = f.datetime_select :logged_at, start_year: 2000, use_month_numbers: true
   = f.text_field :ammount

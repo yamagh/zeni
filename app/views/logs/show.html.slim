@@ -9,7 +9,7 @@ p
 p
   strong= model_class.human_attribute_name(:ammount) + ':'
   br
-  = @log.ammount
+  = number_to_currency @log.ammount
 p
   strong= model_class.human_attribute_name(:is_expence) + ':'
   br

@@ -3,7 +3,7 @@
 one:
   user: bob
   logged_at: 2016-04-06 00:09:18
-  ammount: 999
+  ammount: 9999
   is_expence: true
   account: wallet
   sub_category: breakfast

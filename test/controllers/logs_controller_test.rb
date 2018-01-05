@@ -164,4 +164,15 @@ class LogsControllerTest < ActionDispatch::IntegrationTest
     get edit_log_url
     assert_select "#log_ammount[value='9999']"
   end
+
+  test "should show search options" do
+    get logs_url
+    assert_select "input#q_is_expence_eq"
+    assert_select "select#q_account_id_eq"
+    assert_select "select#q_sub_category_category_id_eq"
+    assert_select "select#q_sub_category_id_eq"
+    assert_select "select#q_store_id_eq"
+    assert_select "input#q_item_cont"
+    assert_select "input#q_memo_cont"
+  end
 end

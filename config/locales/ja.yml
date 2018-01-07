@@ -10,6 +10,8 @@ ja:
     attributes:
       log:
         logged_at: 記録日
+        logged_at_from: 記録日(FROM)
+        logged_at_to: 記録日(TO)
         ammount: 金額
         is_expence: 支出
         account: 口座

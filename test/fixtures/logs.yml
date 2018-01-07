@@ -2,7 +2,7 @@
 
 one:
   user: bob
-  logged_at: 2016-04-06 00:09:18
+  logged_at: 2016-04-06 00:09:00
   ammount: 9999
   is_expence: true
   account: wallet
@@ -13,7 +13,7 @@ one:
 
 two:
   user: taro
-  logged_at: 2017-04-06 00:09:18
+  logged_at: 2017-04-06 00:09:00
   ammount: 9.99
   is_expence: false
   account: pig

@@ -6,6 +6,7 @@ class LogsControllerTest < ActionDispatch::IntegrationTest
     @user = users( :bob )
     login_as(@user, :scope => :user)
     @log = logs(:one)
+    @logs_url_ja = logs_url + '?locale=ja'
   end
 
   test "should get index" do
@@ -174,5 +175,57 @@ class LogsControllerTest < ActionDispatch::IntegrationTest
     assert_select "select#q_store_id_eq"
     assert_select "input#q_item_cont"
     assert_select "input#q_memo_cont"
+  end
+
+  test "should get search result with logged_at_from/to search option" do
+    q = { "logged_at_gteq(1i)" => '2016',
+          "logged_at_gteq(2i)" => '4',
+          "logged_at_gteq(3i)" => '6',
+          "logged_at_gteq(4i)" => '9',
+          "logged_at_gteq(5i)" => '8',
+          "logged_at_lteq(1i)" => '2016',
+          "logged_at_lteq(2i)" => '4',
+          "logged_at_lteq(3i)" => '6',
+          "logged_at_lteq(4i)" => '9',
+          "logged_at_lteq(5i)" => '8',
+          "is_expence_eq"=>"{:class=>\"checkbox\"}",
+          "account_id_eq"=>"",
+          "sub_category_category_id_eq"=>"",
+          "sub_category_id_eq"=>"",
+          "store_id_eq"=>"",
+          "item_cont"=>"",
+          "memo_cont"=>""}
+
+    pq = q
+    get @logs_url_ja, params: { q: pq }
+    assert_response :success
+    assert_select "tbody>tr", 0
+
+    pq = q
+    pq["logged_at_lteq(5i)"] = '9'
+    get @logs_url_ja, params: { q: pq }
+    assert_response :success
+    assert_select "tbody>tr", 1
+
+    pq = q
+    pq["logged_at_gteq(5i)"] = '9'
+    pq["logged_at_lteq(5i)"] = '9'
+    get @logs_url_ja, params: { q: pq }
+    assert_response :success
+    assert_select "tbody>tr", 1
+
+    pq = q
+    pq["logged_at_gteq(5i)"] = '9'
+    pq["logged_at_lteq(5i)"] = '10'
+    get @logs_url_ja, params: { q: pq }
+    assert_response :success
+    assert_select "tbody>tr", 1
+
+    pq = q
+    pq["logged_at_gteq(5i)"] = '10'
+    pq["logged_at_lteq(5i)"] = '10'
+    get @logs_url_ja, params: { q: pq }
+    assert_response :success
+    assert_select "tbody>tr", 0
   end
 end

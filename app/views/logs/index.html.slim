@@ -7,9 +7,12 @@
 
 .toggle-search-cond.btn.btn-default.btn-block 検索条件を表示
 .well.search-cond= search_form_for @q do |f|
-  /.form-group
-  /  = f.label         :logged_at,      {class: 'control-label'}
-  /  = f.search_field  :logged_at_cont, {class: 'form-control'}
+  .form-group
+    = f.label           :logged_at_from,      {class: 'control-label'}
+    = f.datetime_select :logged_at_gteq, start_year: 2000, end_year: Time.now.year, use_month_numbers: true, default: Time.new("2000-01-01 00:00:00")
+  .form-group
+    = f.label           :logged_at_to,      {class: 'control-label'}
+    = f.datetime_select :logged_at_lteq, start_year: 2000, end_year: Time.now.year, use_month_numbers: true
   /.form-group
   /  = f.label         :ammount,      {class: 'control-label'}
   /  = f.number_field  :ammount_eq, {class: 'form-control'}

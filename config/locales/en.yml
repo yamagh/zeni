@@ -10,6 +10,8 @@ en:
     attributes:
       log:
         logged_at: Logged at
+        logged_at_from: Logged at from
+        logged_at_to: Logged at to
         ammount: Ammount
         is_expence: Expense
         account: Account

@@ -57,7 +57,7 @@ end
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
 gem 'slim-rails'
-gem 'devise'
+gem 'devise', github: 'koic/devise', branch: 'fix_syntax_error_for_ruby_2_5_0_preview1'
 gem 'twitter-bootstrap-rails'
 #gem 'less-rails'
 gem 'bootstrap-datepicker-rails'
